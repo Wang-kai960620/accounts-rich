@@ -1,7 +1,7 @@
 <template>
-    <div>这里是Statistics.vue
-        <Nav/>
-    </div>
+    <Layout>
+        这里是Statistics.vue
+    </Layout>
 </template>
 
 <script lang="ts">
