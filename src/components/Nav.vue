@@ -1,7 +1,7 @@
 <template>
     <nav>
-        <router-link to="/labels" class="item" active-class="selected">
-            <Icon name="labels"/>
+        <router-link to="/bill" class="item" active-class="selected">
+            <Icon name="bill"/>
             账单
         </router-link>
         <router-link to="/detail" class="item" active-class="selected">
@@ -45,6 +45,7 @@
         flex-direction: row;
         border-radius: 50px;
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+        background: rgb(255,255,255);
 
 
         > .item {
@@ -55,6 +56,8 @@
             flex-direction: column;
             position: relative;
             color: black;
+            margin-top: 8px;
+
 
             > .myIcon {
                 display: flex;
@@ -63,27 +66,31 @@
                 flex-direction: column;
                 position: absolute;
                 bottom: 0;
+                flex-grow: 1;
 
                 > .add {
                     display: flex;
-                    width: 60px;
-                    height: 60px;
+                    width: 80px;
+                    height: 80px;
                     border-radius: 50%;
                     justify-content: center;
                     align-items: center;
-                    background: rgb(196, 196, 196);
+                    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+                    background: rgb(255,255,255);
+
 
                     > svg {
-                        width: 50px;
-                        height: 50px;
-                    }
-
-
+                        width: 60px;
+                        height: 60px;
                     }
 
 
                 }
+
+
             }
+        }
+
         > .item.selected {
             color: rgb(244, 234, 42);
         }

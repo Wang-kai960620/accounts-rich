@@ -1,12 +1,12 @@
 <template>
     <Layout>
-        这里是Labels.vue
+        这里是Bill.vue
     </Layout>
 </template>
 
 <script lang="ts">
   export default {
-    name: "labels",
+    name: "Bill",
   };
 </script>
 
