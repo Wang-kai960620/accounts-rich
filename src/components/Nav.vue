@@ -66,16 +66,16 @@
 
                 > .add {
                     display: flex;
-                    width: 80px;
-                    height: 80px;
+                    width: 60px;
+                    height: 60px;
                     border-radius: 50%;
                     justify-content: center;
                     align-items: center;
                     background: rgb(196, 196, 196);
 
                     > svg {
-                        width: 60px;
-                        height: 60px;
+                        width: 50px;
+                        height: 50px;
                     }
 
 
