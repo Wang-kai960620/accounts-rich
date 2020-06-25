@@ -1,14 +1,14 @@
 <template>
     <nav>
-        <router-link to="/labels" class="item">
+        <router-link to="/labels" class="item" active-class="selected">
             <Icon name="labels"/>
             账单
         </router-link>
-        <router-link to="/detail" class="item">
+        <router-link to="/detail" class="item" active-class="selected">
             <Icon name="detail"/>
             明细
         </router-link>
-        <router-link to="/money" class="item">
+        <router-link to="/money" class="item" active-class="selected">
             <div class="myIcon">
                 <div class="add">
                     <svg>
@@ -19,11 +19,11 @@
                 <span>记账</span>
             </div>
         </router-link>
-        <router-link to="/statistics" class="item">
+        <router-link to="/statistics" class="item" active-class="selected">
             <Icon name="statistics"/>
             统计
         </router-link>
-        <router-link to="/my" class="item">
+        <router-link to="/my" class="item" active-class="selected">
             <Icon name="my"/>
             我的
         </router-link>
@@ -54,6 +54,7 @@
             align-items: center;
             flex-direction: column;
             position: relative;
+            color: black;
 
             > .myIcon {
                 display: flex;
@@ -78,9 +79,13 @@
                     }
 
 
+                    }
+
+
                 }
             }
-
+        > .item.selected {
+            color: rgb(244, 234, 42);
         }
     }
 </style>
