@@ -1,23 +1,29 @@
 <template>
     <div>
+        <router-link to="/labels">
+            <Icon name="labels"/>
+            账单
+        </router-link>
+        <router-link to="/detail">
+            <Icon name="detail"/>
+            明细
+        </router-link>
         <router-link to="/money">
-           <svg>
-               <use xlink:href = "#add"/>l
-           </svg>
+            <Icon name="add"/>
             记账
         </router-link>
-        |
-        <router-link to="/labels">标签</router-link>
-        |
-        <router-link to="/statistics">统计</router-link>
+        <router-link to="/statistics">
+            <Icon name="statistics"/>
+            统计
+        </router-link>
+        <router-link to="/my">
+            <Icon name="my"/>
+            我的
+        </router-link>
     </div>
 </template>
 
 <script lang="ts">
-  import x from "@/assets/icons/add.svg";
-
-  console.log(x);
-
   export default {
     name: "Nav"
   };
