@@ -7,6 +7,8 @@ import Statistics from "@/views/Statistics.vue";
 import NotFond from "@/views/NotFond.vue";
 import My from "@/views/My.vue";
 import Detail from "@/views/Detail.vue";
+import IconMap from "@/views/IconMap.vue";
+import NumberMap from "@/views/NumberMap.vue";
 
 Vue.use(VueRouter);
 
@@ -14,11 +16,7 @@ Vue.use(VueRouter);
 const routes: Array<RouteConfig> = [
   {
     path: "/",
-    redirect: "./money"
-  },
-  {
-    path: "/money",
-    component: Money
+    redirect: "./bill"
   },
   {
     path: "/bill",
@@ -35,6 +33,14 @@ const routes: Array<RouteConfig> = [
   {
     path: "/my",
     component: My
+  },
+  {
+    path:"/iconMap",
+    component:IconMap
+  },
+  {
+    path:"/numberMap",
+    component:NumberMap
   },
   {
     path: "*",

@@ -8,15 +8,14 @@
             <Icon name="detail"/>
             明细
         </router-link>
-        <router-link to="/money" class="item" active-class="selected">
+        <router-link to="/iconMap" class="item" active-class="selected">
             <div class="myIcon">
                 <div class="add">
                     <svg>
                         <use xlink:href="#add"/>
                     </svg>
                 </div>
-
-                <span>记账</span>
+                <div>记账</div>
             </div>
         </router-link>
         <router-link to="/statistics" class="item" active-class="selected">
@@ -44,8 +43,8 @@
         display: flex;
         flex-direction: row;
         border-radius: 50px;
-        box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
-        background: rgb(255,255,255);
+        /*box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);*/
+        background: rgb(196, 196, 196);
 
 
         > .item {
@@ -65,29 +64,26 @@
                 align-items: center;
                 flex-direction: column;
                 position: absolute;
-                bottom: 0;
                 flex-grow: 1;
+                margin-bottom: 0;
+                bottom: 0;
 
                 > .add {
                     display: flex;
-                    width: 80px;
-                    height: 80px;
+                    width: 50px;
+                    height: 45px;
                     border-radius: 50%;
-                    justify-content: center;
-                    align-items: center;
-                    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
-                    background: rgb(255,255,255);
-
+                    position: relative;
+                    background: rgb(196, 196, 196);
 
                     > svg {
-                        width: 60px;
-                        height: 60px;
+                        left: 5px;
+                        position: absolute;
+                        bottom: 0;
+                        width: 40px;
+                        height: 40px;
                     }
-
-
                 }
-
-
             }
         }
 

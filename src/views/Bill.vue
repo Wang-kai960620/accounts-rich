@@ -1,6 +1,12 @@
 <template>
     <Layout>
-        这里是Bill.vue
+        <div>
+            <div>year</div>
+            <div>mouths</div>
+            <div>input</div>
+            <div>output</div>
+        </div>
+        <div>walk</div>
     </Layout>
 </template>
 
