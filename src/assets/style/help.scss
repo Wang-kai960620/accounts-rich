@@ -1,0 +1,9 @@
+
+//placeholder
+%clearFix{
+  &::after{
+    content: "";
+    display: block;
+    clear: both;
+  }
+}

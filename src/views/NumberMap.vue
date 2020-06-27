@@ -2,7 +2,7 @@
     <layout>
         <div class="title">title</div>
         <div class="type">type</div>
-        <div class="show">showNumber</div>
+        <div class="show">0.00</div>
         <div class="numberMap">
             <button>7</button>
             <button>8</button>
@@ -15,7 +15,11 @@
             <button>1</button>
             <button>2</button>
             <button>3</button>
-            <button>add</button>
+            <button class="add">
+                <router-link to="/">
+                    OK
+                </router-link>
+            </button>
             <button>.</button>
             <button>0</button>
             <button>#</button>
@@ -30,6 +34,8 @@
 </script>
 
 <style lang="scss" scoped>
+    @import "~@/assets/style/help.scss";
+
     .title {
         display: flex;
         height: 120px;
@@ -37,7 +43,40 @@
         background: #ffcd00;
         box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     }
-    .type{
-        border: 1px solid red;
+
+    .type {
+        height: 70px;
+        margin: 30px 0;
+    }
+
+
+    .show {
+        font-size: 46px;
+        text-align: right;
+        margin: 20px;
+        font-family: Consolas, monospace;
+    }
+
+    .numberMap {
+        width: 370px;
+        margin: auto ;
+        bottom: 0;
+        @extend %clearFix;
+
+        > button {
+            margin: 18px 8.8px;
+            width: 20%;
+            height: 60px;
+            float: left;
+            border-radius: 50%;
+            border: none;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);;
+
+            &.add {
+                height: 150px;
+                float: right;
+                border-radius: 50px;
+            }
+        }
     }
 </style>

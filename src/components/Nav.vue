@@ -8,7 +8,7 @@
             <Icon name="detail"/>
             明细
         </router-link>
-        <router-link to="/numberMap" class="item" active-class="selected">
+        <router-link to="/iconMap" class="item" active-class="selected">
             <div class="myIcon">
                 <div class="add">
                     <svg>
@@ -30,7 +30,6 @@
 </template>
 
 <script lang="ts">
-  import x from "@/assets/icons/add.svg";
 
 
   export default {
