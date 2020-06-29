@@ -1,8 +1,9 @@
 <template>
     <Layout>
         <div class="title">
-            <div class="year">year</div>
-            <div class="mouths">X月</div>
+            <label class="year">
+                year</label>
+            <label class="mouths">{{n}}</label>
             <div class="input">input
             <div>0.00</div>
             </div>
@@ -15,9 +16,13 @@
 </template>
 
 <script lang="ts">
-  export default {
-    name: "Bill",
-  };
+    import Vue from 'vue'
+    import {Component} from "vue-property-decorator";
+    @Component
+export default class Bill   extends Vue{
+  n='6月'
+
+}
 </script>
 
 <style lang="scss" scoped>
@@ -41,6 +46,7 @@
             font-size:56px;
             bottom: 0;
             left: 30px;
+            font-family: monospace,Consolas;
         }
 
         > .output {
