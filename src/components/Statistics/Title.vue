@@ -6,7 +6,7 @@
 
 <script lang="ts">
   export default {
-    name: "title"
+    name: "Title"
   };
 </script>
 
@@ -19,7 +19,7 @@
         box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
         justify-content: center;
         align-items: center;
-        >div{
+        >div {
             font-size: 30px;
         }
     }

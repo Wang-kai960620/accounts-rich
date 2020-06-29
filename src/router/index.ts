@@ -9,6 +9,7 @@ import My from "@/views/My.vue";
 import Detail from "@/views/Detail.vue";
 import IconMap from "@/views/IconMap.vue";
 import NumberMap from "@/views/NumberMap.vue";
+import Setting from "@/views/Setting.vue";
 
 Vue.use(VueRouter);
 
@@ -41,6 +42,10 @@ const routes: Array<RouteConfig> = [
   {
     path:"/numberMap",
     component:NumberMap
+  },
+  {
+    path:"/setting",
+    component:Setting
   },
   {
     path: "*",

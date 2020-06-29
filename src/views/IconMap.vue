@@ -9,21 +9,16 @@
             </div>
         </div>
         <router-link to="numberMap" class="icons" active-class="select">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+            <div>旅游</div>
+            <div>出行</div>
+            <div>聚会</div>
+            <div>吃饭</div>
+            <div>衣服</div>
+            <div>房租</div>
+            <div class="setting">
+                <router-link to="Setting">设置</router-link>
+            </div>
+
         </router-link>
 
     </Layout>
@@ -35,7 +30,7 @@
 
   @Component
   export default class IconMap extends Vue {
-    type = "-";  //-表示支出，+表示收入
+    type = "+";  //-表示支出，+表示收入
     selectType(Type: string) {
       if (Type !== "-" && Type !== "+") {
         throw new Error("Type is undefined");
@@ -60,6 +55,9 @@
         text-align: center;
 
         > div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin-left: 0;
             font-size: 2em;
             bottom: 3px;
@@ -76,7 +74,6 @@
     }
 
     ;
-
 
     .icons {
         display: flex;
@@ -97,6 +94,13 @@
             border-radius: 50%;
             background: #e5e5e5;
             box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+        }
+
+        > .setting {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
         }
     }
 </style>

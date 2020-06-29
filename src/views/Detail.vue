@@ -3,14 +3,10 @@
         <Title/>
         <DetailButton/>
         <ul>
-            <li> 零食</li>
-            <li> 零食</li>
-            <li> 零食</li>
-            <li> 零食</li>
-            <li> 零食</li>
-            <li> 零食</li>
-            <li> 零食</li>
-            <li> 零食</li>
+            <li> 衣</li>
+            <li> 食</li>
+            <li> 住</li>
+            <li> 行</li>
         </ul>
     </Layout>
 </template>
@@ -30,8 +26,14 @@
 
     ul {
         font-size: 2em;
+        display: flex;
+        flex-wrap: wrap;
+        width: 80%;
+
         > li {
-            border: 1px solid red;
+            margin: auto;
+            width: 100%;
+            list-style: none;
             border-radius: 30px 30px 30px 30px;
         }
     }
