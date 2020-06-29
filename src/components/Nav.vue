@@ -68,7 +68,6 @@
                 bottom: 0;
 
                 > .add {
-                    display: flex;
                     width: 50px;
                     height: 45px;
                     border-radius: 50%;
