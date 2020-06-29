@@ -34,11 +34,14 @@
             <button>3</button>
         </div>
         <div class="add">
-            <button>
+            <button class="aButton">
                 <router-link to="/">
-                    OK
-                </router-link>
+
+                OK
+            </router-link>
             </button>
+
+
         </div>
         <div>
             <button>.</button>
@@ -54,9 +57,14 @@
 </template>
 
 <script lang="ts">
-  export default {
-    name: "NumberMap"
-  };
+  import Vue from "vue";
+  import {Component} from "vue-property-decorator";
+
+
+  @Component
+  export default class NumberButton extends Vue{
+
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -83,6 +91,7 @@
                 box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 
             }
+
         }
 
         .add {

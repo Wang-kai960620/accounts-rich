@@ -1,12 +1,16 @@
 <template>
     <Layout>
-        这里是My.vue
+       <Title/>
+        <div>face</div>
+
     </Layout>
 </template>
 
 <script lang="ts">
+  import Title from "@/components/Detail/Title.vue";
   export default {
-    name: "my"
+    name: "my",
+    components: {Title}
   };
 </script>
 
