@@ -1,6 +1,6 @@
 <template>
     <Layout>
-        <Title/>
+        <detailTitle/>
         <div class="message">
             <div class="face">
                 <Icon name="add"/>
@@ -23,11 +23,11 @@
 </template>
 
 <script lang="ts">
-  import Title from "@/components/Detail/Title.vue";
+  import detailTitle from "@/components/Detail/detailTitle.vue";
 
   export default {
     name: "my",
-    components: {Title}
+    components: {detailTitle}
   };
 </script>
 

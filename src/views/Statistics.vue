@@ -1,6 +1,6 @@
 <template>
     <Layout>
-        <Title/>
+        <statisticsTitle />
         <div class="text">详情</div>
         <div class="circle">
             <div class="inCircle">
@@ -12,11 +12,11 @@
 
 <script lang="ts">
 
-  import Title from "@/components/Statistics/Title.vue";
+  import statisticsTitle from "@/components/Statistics/statisticsTitle.vue";
 
   export default {
     name: "Statistics",
-    components: {Title},
+    components: {statisticsTitle },
   };
 
 </script>

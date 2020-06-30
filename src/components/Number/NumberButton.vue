@@ -36,10 +36,10 @@
                 <button @click="inputContent">3</button>
             </div>
             <div class="add">
-                <button class="aButton">
-                    <router-link to="/">
+                <button class="aButton" @click="addButton">
+<!--                    <router-link to="/">-->
                         OK
-                    </router-link>
+<!--                    </router-link>-->
                 </button>
             </div>
             <div>
@@ -88,6 +88,11 @@
     }
     clear(){
       this.output = '0'
+    }
+    addButton(){
+      this.$emit("update:value",this.output)
+      this.$emit('change',this.output)
+      this.output='0'
     }
   }
 </script>

@@ -1,17 +1,17 @@
 <template>
-    <div class="title">
+    <div class="settingTitle">
         <div>Panda-记账</div>
     </div>
 </template>
 
 <script lang="ts">
   export default {
-    name: "title"
+    name: "Title"
   };
 </script>
 
 <style lang="scss" scoped>
-    .title {
+    .settingTitle {
         display: flex;
         height: 18vh;
         border-radius: 0 0 30px 30px;

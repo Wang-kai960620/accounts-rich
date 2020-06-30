@@ -1,10 +1,10 @@
 <template>
     <div class="switch">
-        <div :class="type === '+' && 'input'"
-             @click="select('+')">收入
-        </div>
-        <div :class="type === '-' && 'input'"
+        <div :class="value === '-' && 'input'"
              @click="select('-')">支出
+        </div>
+        <div :class="value === '+' && 'input'"
+             @click="select('+')">收入
         </div>
     </div>
 
@@ -12,16 +12,16 @@
 
 <script lang="ts">
   import Vue from "vue";
-  import {Component} from "vue-property-decorator";
+  import {Component, Prop} from "vue-property-decorator";
 
   @Component
   export default class DetailButton extends Vue {
-    type = "+";  //-表示支出，+表示收入
-    select(Type: string) {
-      if (Type !== "-" && Type !== "+") {
-        throw new Error("Type is undefined");
+    @Prop(String) readonly value!: string
+    select(type: string) {
+      if (type !== "-" && type !== "+") {
+        throw new Error("Type is unKnow");
       }
-      this.type = Type;
+      this.$emit('update:value',type)
     }
   }
 

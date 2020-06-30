@@ -1,5 +1,5 @@
 <template>
-    <div class="title">
+    <div class="iconTitle">
         <div>Panda-记账</div>
     </div>
 </template>
@@ -11,7 +11,7 @@
 </script>
 
 <style lang="scss" scoped>
-    .title {
+    .iconTitle {
         display: flex;
         height: 18vh;
         border-radius: 0 0 30px 30px;
@@ -19,7 +19,7 @@
         box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
         justify-content: center;
         align-items: center;
-        >div{
+        >div {
             font-size: 30px;
         }
     }

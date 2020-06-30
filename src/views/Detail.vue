@@ -1,7 +1,7 @@
 <template>
     <Layout>
-        <Title/>
-        <DetailButton/>
+        <detailTitle/>
+        <DetailButton  :value.sync="type" />
         <ul>
             <li> 衣</li>
             <li> 食</li>
@@ -13,13 +13,16 @@
 
 
 <script lang="ts">
-  import Title from "@/components/Detail/Title.vue";
+  import Vue from "vue";
+  import detailTitle from "@/components/Detail/detailTitle.vue";
   import DetailButton from "@/components/Detail/DetailButton.vue";
+  import {Component} from "vue-property-decorator";
 
-  export default {
-    name: "detail",
-    components: {DetailButton, Title}
-  };
+  @Component({components: {DetailButton, detailTitle}})
+  export default class Detail extends Vue {
+    type ='-'
+
+  }
 </script>
 
 <style lang="scss" scoped>

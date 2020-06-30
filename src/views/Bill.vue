@@ -1,13 +1,13 @@
 <template>
     <Layout>
-        <div class="title">
+        <div class="billTitle">
             <label class="year">
                 year</label>
             <label class="mouths">{{n}}</label>
-            <div class="input">input
+            <div class="input">收 入
             <div>0.00</div>
             </div>
-            <div class="output">output
+            <div class="output">支 出
             <div>0.00</div>
             </div>
         </div>
@@ -26,7 +26,7 @@ export default class Bill   extends Vue{
 </script>
 
 <style lang="scss" scoped>
-    .title {
+    .billTitle {
         height: 26vh;
         display: flex;
         position: relative;

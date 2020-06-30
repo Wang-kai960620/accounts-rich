@@ -1,17 +1,22 @@
 <template>
-    <div class="title">
+    <div class="numberTitle">
         <div>Panda-记账</div>
     </div>
+
 </template>
 
 <script lang="ts">
-  export default {
-    name: "Title"
-  };
+  import Vue from "vue";
+  import {Component} from "vue-property-decorator";
+
+  @Component
+  export default class NumberTitle extends Vue {
+
+  }
 </script>
 
 <style lang="scss" scoped>
-    .title {
+    .numberTitle {
         display: flex;
         height: 18vh;
         border-radius: 0 0 30px 30px;
@@ -23,4 +28,5 @@
             font-size: 30px;
         }
     }
+
 </style>

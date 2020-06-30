@@ -1,6 +1,6 @@
 <template>
     <Layout>
-        <div class="title">
+        <div class="iconTitle">
             <div :class="type === '+' && 'input'"
                  @click="selectType('+')">收入
             </div>
@@ -8,15 +8,10 @@
                  @click="selectType('-')">支出
             </div>
         </div>
-        <router-link to="numberMap" class="icons" active-class="select">
-            <div>旅游</div>
-            <div>出行</div>
-            <div>聚会</div>
-            <div>吃饭</div>
-            <div>衣服</div>
-            <div>房租</div>
-            <div class="setting">
-                <router-link to="Setting">设置</router-link>
+        <router-link to="numberMap" class="icons">
+            <div v-for="tag in tags" :key="tag">{{tag}}</div>
+            <div>
+                <router-link to="Setting" class="setting"><span>设置</span></router-link>
             </div>
 
         </router-link>
@@ -30,6 +25,7 @@
 
   @Component
   export default class IconMap extends Vue {
+    tags = ["衣", "食", "住", "行"];
     type = "+";  //-表示支出，+表示收入
     selectType(Type: string) {
       if (Type !== "-" && Type !== "+") {
@@ -44,7 +40,7 @@
 <style lang="scss" scoped>
     @import "~@/assets/style/help.scss";
 
-    .title {
+    .iconTitle {
         display: flex;
         border-radius: 0 0 30px 30px;
         background: #ffcd00;
@@ -52,7 +48,6 @@
         height: 18vh;
         justify-content: center;
         align-items: center;
-        text-align: center;
 
         > div {
             display: flex;
@@ -62,7 +57,6 @@
             font-size: 2em;
             bottom: 3px;
             width: 50%;
-
 
             &.input {
                 color: white;
@@ -94,13 +88,6 @@
             border-radius: 50%;
             background: #e5e5e5;
             box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-        }
-
-        > .setting {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 20px;
         }
     }
 </style>
