@@ -16,6 +16,10 @@
   @Component
   export default class Type extends Vue {
     value = "";
+    // onInput(event:KeyboardEvent){  // v-model中@input对应函数，
+    //   const input = event.target as HTMLInputElement
+    //   this.value=input.value
+    // }
   @Watch('value')
     onTypeChange(value: string){
     this.$emit('update:value',value)
