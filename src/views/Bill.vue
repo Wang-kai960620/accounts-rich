@@ -97,15 +97,17 @@
             border-radius: 30px;
             background: white;
             color: black;
-            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
 
         }
 
 
         > .outText {
+            text-align: right;
+            width: 100%;
             height: 50px;
-            padding: 3px 5px;
-            border-radius: 10px;
+            padding: 3px 20px;
+            border-radius: 20px;
             background: #ffcd00;
         }
 
@@ -131,13 +133,15 @@
             border-radius: 30px;
             background: white;
             color: black;
-            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
         }
 
         > .inText {
+            text-align: right;
+            width: 100%;
             height: 50px;
-            padding: 3px 5px;
-            border-radius: 10px;
+            padding: 3px 20px;
+            border-radius: 30px;
             background: #ffcd00;
         }
     }
