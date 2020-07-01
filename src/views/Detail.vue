@@ -3,10 +3,7 @@
         <detailTitle/>
         <DetailButton  :value.sync="type" />
         <ul>
-            <li> 衣</li>
-            <li> 食</li>
-            <li> 住</li>
-            <li> 行</li>
+            <li v-for="list in lists " :key="list" >{{list}} </li>
         </ul>
     </Layout>
 </template>
@@ -20,6 +17,7 @@
 
   @Component({components: {DetailButton, detailTitle}})
   export default class Detail extends Vue {
+    lists: string[]=['衣','食','住','行']
     type ='-'
 
   }

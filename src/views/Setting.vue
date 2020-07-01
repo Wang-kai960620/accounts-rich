@@ -1,7 +1,7 @@
 <template>
     <layout>
         <SettingTitle/>
-        <List/>
+        <List @update:value="onUpdateTag"/>
         <inner @innerText="addText"/>
 
     </layout>
@@ -28,10 +28,12 @@
       tag:'',
       text:''
     }
+    onUpdateTag(value: string){
+      this.settingText.tag=value
+    }
     addText(value: string) {
       this.settingText.text=value
       this.settingList.push(this.settingText)
-
     }
     @Watch('settingList')
     onChangeList(){
