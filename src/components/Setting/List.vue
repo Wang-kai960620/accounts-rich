@@ -27,7 +27,6 @@
         this.selectTags.push(tag);
         this.$emit("update:value",this.selectTags)
       }
-      console.log(this.selectTags);
     }
   }
 </script>

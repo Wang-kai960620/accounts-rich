@@ -13,6 +13,7 @@
   import numberType from "@/components/Number/Type.vue";
   import NumberButton from "@/components/Number/NumberButton.vue";
   import {Component, Watch} from "vue-property-decorator";
+  import router from "@/router";
 
   type NodeList = {
     type: string;
@@ -38,10 +39,12 @@
 
     saveAmount() {
       this.textList.push(this.text)
+      console.log(this.textList)
     }
     @Watch('textList')
     onTextListChange(){
       window.localStorage.setItem('textList',JSON.stringify(this.textList))
+      router.push({path:'/'})
     }
   }
 </script>

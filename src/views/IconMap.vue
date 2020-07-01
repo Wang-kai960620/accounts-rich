@@ -8,13 +8,15 @@
                  @click="selectType('-')">支出
             </div>
         </div>
-        <router-link to="numberMap" class="icons">
-            <div v-for="tag in tags" :key="tag">{{tag}}</div>
-            <div>
-                <router-link to="Setting" class="setting"><span>设置</span></router-link>
+        <div class="icons">
+            <div v-for="tag in tags" :key="tag"  @click="toNumberMap">
+                <Icon :name="tag" class="tagIcon"/></div>
+            <div @click="toSetting">
+                设置
             </div>
+        </div>
 
-        </router-link>
+
 
     </Layout>
 </template>
@@ -22,16 +24,25 @@
 <script lang="ts">
   import Vue from "vue";
   import {Component} from "vue-property-decorator";
+  import router from "@/router";
 
   @Component
   export default class IconMap extends Vue {
-    tags = ["衣", "食", "住", "行"];
+
+
+    tags = ["clothes", "eat", "home", "travel"];
     type = "+";  //-表示支出，+表示收入
     selectType(Type: string) {
       if (Type !== "-" && Type !== "+") {
         throw new Error("Type is undefined");
       }
       this.type = Type;
+    }
+    toNumberMap(){
+      router.push('numberMap')
+    }
+    toSetting(){
+      router.push('setting')
     }
   }
 
@@ -76,6 +87,8 @@
         margin: 30px auto;
         justify-content: center;
         width: 300px;
+        text-align: center;
+
 
         > div {
             width: 80px;
@@ -88,6 +101,10 @@
             border-radius: 50%;
             background: #e5e5e5;
             box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+            >.tagIcon{
+                width: 100%;
+                height: 100%;
+            }
         }
     }
 </style>

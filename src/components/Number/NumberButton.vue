@@ -37,9 +37,7 @@
             </div>
             <div class="add">
                 <button class="aButton" @click="addButton">
-<!--                    <router-link to="/">-->
                         OK
-<!--                    </router-link>-->
                 </button>
             </div>
             <div>
@@ -58,6 +56,7 @@
 <script lang="ts">
   import Vue from "vue";
   import {Component} from "vue-property-decorator";
+  import router from "@/router";
 
 
   @Component

@@ -3,11 +3,9 @@
         <label class="add">
             <input type="text" placeholder="输入标签内容"
             :value="value" @input="newText"/>
+<!--            可以简写为v-model-->
         </label>
         <button @click="addNewTag" >点击添加
-<!--            <router-link to="iconMap" >-->
-<!--                点击添加-->
-<!--            </router-link>-->
         </button>
     </div>
 
