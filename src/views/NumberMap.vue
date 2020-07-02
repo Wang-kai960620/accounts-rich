@@ -34,7 +34,6 @@
 
     created() {
       this.$store.commit('fetchRecords')
-
     }
 
     onUpdateAmount(value: string) {

@@ -4,18 +4,18 @@
             <label class="year">
                 {{year}}年</label>
             <label class="mouths">{{n}}月</label>
-            <div class="input">收 入
-                <div>0.00</div>
+            <div class="input" v-for="(money,index) in numberList" :key="index">收 入
+                <div>{{money.amount}}</div>
             </div>
             <div class="output">支 出
-                <div>0.00</div>
+                <div>{{outMoney}}</div>
             </div>
         </div>
         <div class="outTag" @click="toDetail">
             <div class="outList"
-                 v-for="name in iconList" :key="name.index">
+                 v-for="(name,index) in iconList" :key="index">
                 <Icon :name="name.tags"/>
-                <span v-for="number in numberList" :key="number.index">{{number.amount}}</span></div>
+                <span v-for="(number,index) in numberList" :key="index">{{number.amount}}</span></div>
         </div>
     </Layout>
 </template>
@@ -25,12 +25,12 @@
   import router from "@/router";
   import {Component} from "vue-property-decorator";
 
-  type allList = {
-
-  }
+  type allList = {}
   @Component
   export default class Bill extends Vue {
     year = "";
+    inMoney = 0.00;
+    outMoney = 0.00;
     n = "";
     iconList: FitItem[] = [];
     numberList: RecordItem[] = [];
@@ -43,6 +43,7 @@
     created() {
       this.numberList = JSON.parse(window.localStorage.getItem("recordList") || "[]");
       this.iconList = JSON.parse(window.localStorage.getItem("FitList") || "[]");
+
     }
 
     mounted() {

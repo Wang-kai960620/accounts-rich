@@ -36,12 +36,11 @@
   }
   @Component
   export default class IconMap extends Vue {
-    tag: RecordItem = {
-      notes: "",
-      amount: 0,
+    tag: FitItem = {
       tags: "",
       type: "",
     };
+
     settingName: settingNumber={
       text:'',
       settingTag:''
@@ -49,8 +48,8 @@
     }
 
     created() {
-      // this.$store.commit("fetchFits");
-      this.$store.commit("fetchRecords");
+      this.$store.commit("fetchFits");
+      // this.$store.commit("fetchRecords");
       this.settingName = JSON.parse(window.localStorage.getItem("settingList") || "[]")
     }
 
@@ -61,13 +60,16 @@
         throw new Error("Type is undefined");
       }
       this.type = Type;
-      // this.tag.type = Type;
       this.tag.type = Type;
     }
 
     toNumberMap(tag: string) {
-      // this.tag.tags = tag;
       this.tag.tags = tag;
+      // this.$store.commit('fitList',this.tag)
+      // this.$store.commit('editingItem', {
+      //   type: this.tag.type,
+      //   amount: null,
+      // })
       router.push("numberMap");
     }
 

@@ -6,11 +6,13 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     fitList:[] as FitItem[],
-    recordList: [] as RecordItem[]
+    recordList: [] as RecordItem[],
+    editingItem: {} as RecordItem
   },
   mutations: {
     fetchRecords(state) {
       state.recordList = JSON.parse(window.localStorage.getItem("recordList") || "[]") as RecordItem[];
+      console.log(state.recordList)
     },
     createRecords(state,record){
       const record2: RecordItem = record
