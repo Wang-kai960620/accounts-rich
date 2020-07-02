@@ -36,7 +36,7 @@
     }
 
     onUpdateTag(value: string) {
-      this.settingText.tag = value;
+      this.settingText.tag = value.toString();
     }
 
     addText(value: string) {

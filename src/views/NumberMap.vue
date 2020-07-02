@@ -14,7 +14,6 @@
   import NumberButton from "@/components/Number/NumberButton.vue";
   import {Component} from "vue-property-decorator";
   import router from "@/router";
-  import store from "@/store";
 
 
   @Component({

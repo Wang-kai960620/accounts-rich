@@ -10,10 +10,13 @@
 
         </div>
         <div class="icons">
-            <div v-for="tag in tags" :key="tag" @click="toNumberMap(tag)">
+            <div v-for="tag in tags" :key="tag.index" @click="toNumberMap(tag)">
                 <Icon :name="tag" class="tagIcon"/>
             </div>
-            <div @click="toSetting" class="setting">
+            <div v-for="name in settingName" :key="name.index">
+                <Icon :name="name.tag" class="newIcon"/>
+            </div>
+            <div @click="toSetting" class="setting" >
                 <span>
                 设置
                 </span>
@@ -24,9 +27,13 @@
 
 <script lang="ts">
   import Vue from "vue";
-  import {Component, Watch} from "vue-property-decorator";
+  import {Component} from "vue-property-decorator";
   import router from "@/router";
 
+  type settingNumber ={
+    text: string;
+    settingTag: string;
+  }
   @Component
   export default class IconMap extends Vue {
     tag: RecordItem = {
@@ -35,10 +42,16 @@
       tags: "",
       type: "",
     };
+    settingName: settingNumber={
+      text:'',
+      settingTag:''
+
+    }
 
     created() {
       // this.$store.commit("fetchFits");
-      this.$store.commit('fetchRecords')
+      this.$store.commit("fetchRecords");
+      this.settingName = JSON.parse(window.localStorage.getItem("settingList") || "[]")
     }
 
     tags = ["clothes", "eat", "home", "travel"];
@@ -49,14 +62,15 @@
       }
       this.type = Type;
       // this.tag.type = Type;
-      this.tag.type = Type
+      this.tag.type = Type;
     }
 
     toNumberMap(tag: string) {
       // this.tag.tags = tag;
-      this.tag.tags = tag
+      this.tag.tags = tag;
       router.push("numberMap");
     }
+
     toSetting() {
       router.push("setting");
     }
@@ -129,6 +143,11 @@
                 align-items: center;
                 font-size: 30px;
             }
+            >.newIcon{
+                width: 100%;
+                height: 100%;
+            }
         }
     }
+
 </style>
