@@ -12,9 +12,10 @@
             </div>
         </div>
         <div class="outTag" @click="toDetail">
-            <div class="outList" v-for="name in textList" :key="name.index">
-                <Icon :name="name"/>
-                <span>100</span></div>
+            <div class="outList"
+                 v-for="name in iconList" :key="name.index">
+                <Icon :name="name.tags"/>
+                <span v-for="number in numberList" :key="number.index">{{number.amount}}</span></div>
         </div>
     </Layout>
 </template>
@@ -24,26 +25,24 @@
   import router from "@/router";
   import {Component} from "vue-property-decorator";
 
-  type allList={
-    textList: string;
-    numberList: string;
+  type allList = {
+
   }
   @Component
   export default class Bill extends Vue {
     year = "";
     n = "";
-    textList: string[] = [];
-    numberList: string[] =[]
+    iconList: FitItem[] = [];
+    numberList: RecordItem[] = [];
+
 
     toDetail() {
       router.push("detail");
     }
+
     created() {
-      this.textList = JSON.parse(window.localStorage.getItem("tagList") || "[]");
-      this.numberList  = JSON.parse(window.localStorage.getItem('textList') || '[]')
-      const x = this.numberList
-      console.log(x);
-      console.log(this.textList);
+      this.numberList = JSON.parse(window.localStorage.getItem("recordList") || "[]");
+      this.iconList = JSON.parse(window.localStorage.getItem("FitList") || "[]");
     }
 
     mounted() {
@@ -95,7 +94,6 @@
             font-family: Consolas, monospace;
         }
     }
-
 
 
     .outTag {

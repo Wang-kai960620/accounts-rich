@@ -29,7 +29,17 @@
 
   @Component
   export default class IconMap extends Vue {
-    tagList: string[] = [];
+    tag: RecordItem = {
+      notes: "",
+      amount: 0,
+      tags: "",
+      type: "",
+    };
+
+    created() {
+      // this.$store.commit("fetchFits");
+      this.$store.commit('fetchRecords')
+    }
 
     tags = ["clothes", "eat", "home", "travel"];
     type = "-";  //-表示支出，+表示收入
@@ -38,23 +48,17 @@
         throw new Error("Type is undefined");
       }
       this.type = Type;
-      console.log(this.type)
-
+      // this.tag.type = Type;
+      this.tag.type = Type
     }
 
     toNumberMap(tag: string) {
-      this.tagList = JSON.parse(window.localStorage.getItem('tagList')||'[]')
-      this.tagList.push(tag);
+      // this.tag.tags = tag;
+      this.tag.tags = tag
+      router.push("numberMap");
     }
-
     toSetting() {
       router.push("setting");
-    }
-
-    @Watch("tagList")
-    innerTag() {
-      window.localStorage.setItem("tagList", JSON.stringify(this.tagList));
-      router.push("numberMap");
     }
   }
 
@@ -118,7 +122,8 @@
                 width: 100%;
                 height: 100%;
             }
-            &.setting{
+
+            &.setting {
                 display: flex;
                 justify-content: center;
                 align-items: center;
