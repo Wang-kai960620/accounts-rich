@@ -15,7 +15,9 @@
   import {Component, Watch} from "vue-property-decorator";
   import router from "@/router";
 
-  type NodeList = {
+
+  type Node = {
+    iconType: string;
     type: string;
     amount: number;
   }
@@ -23,11 +25,21 @@
 
   @Component({components: {numberType, numberTitle, NumberButton}})
   export default class NumberMap extends Vue {
-    textList: NodeList[] = [];
-    text: NodeList = {
+    textList: Node[] = [];
+    text: Node = {
+      iconType:"",
       type: "",
       amount: 0
     };
+
+    created(){
+      console.log(window.localStorage.getItem('tagList'))
+      console.log(JSON.parse(window.localStorage.getItem("tagList") || "[]"));
+      const x = JSON.parse(window.localStorage.getItem("tagList") || "[]")
+      console.log(x);
+      this.text.iconType = x
+      console.log(this.text)
+    }
 
     onUpdateAmount(value: string) {
       this.text.amount = parseFloat(value);
@@ -38,13 +50,15 @@
     }
 
     saveAmount() {
-      this.textList.push(this.text)
-      console.log(this.textList)
+      this.textList = JSON.parse(window.localStorage.getItem('textList') || "[]" )
+      const texList2 = JSON.parse(JSON.stringify(this.text));
+      this.textList.push(texList2);
     }
-    @Watch('textList')
-    onTextListChange(){
-      window.localStorage.setItem('textList',JSON.stringify(this.textList))
-      router.push({path:'/'})
+
+    @Watch("textList")
+    onTextListChange() {
+      window.localStorage.setItem("textList", JSON.stringify(this.textList));
+      router.push("/");
     }
   }
 </script>

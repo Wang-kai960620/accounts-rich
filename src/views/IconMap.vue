@@ -1,19 +1,22 @@
 <template>
     <Layout>
         <div class="iconTitle">
-            <div :class="type === '+' && 'input'"
-                 @click="selectType('+')">收入
-            </div>
             <div :class="type === '-' && 'input'"
                  @click="selectType('-')">支出
             </div>
+            <div :class="type === '+' && 'input'"
+                 @click="selectType('+')">收入
+            </div>
+
         </div>
         <div class="icons">
-            <div v-for="tag in tags" :key="tag" @click="toNumberMap">
+            <div v-for="tag in tags" :key="tag" @click="toNumberMap(tag)">
                 <Icon :name="tag" class="tagIcon"/>
             </div>
-            <div @click="toSetting">
+            <div @click="toSetting" class="setting">
+                <span>
                 设置
+                </span>
             </div>
         </div>
     </Layout>
@@ -21,27 +24,37 @@
 
 <script lang="ts">
   import Vue from "vue";
-  import {Component} from "vue-property-decorator";
+  import {Component, Watch} from "vue-property-decorator";
   import router from "@/router";
 
   @Component
   export default class IconMap extends Vue {
+    tagList: string[] = [];
 
     tags = ["clothes", "eat", "home", "travel"];
-    type = "+";  //-表示支出，+表示收入
+    type = "-";  //-表示支出，+表示收入
     selectType(Type: string) {
       if (Type !== "-" && Type !== "+") {
         throw new Error("Type is undefined");
       }
       this.type = Type;
+      console.log(this.type)
+
     }
 
-    toNumberMap() {
-      router.push("numberMap");
+    toNumberMap(tag: string) {
+      this.tagList = JSON.parse(window.localStorage.getItem('tagList')||'[]')
+      this.tagList.push(tag);
     }
 
     toSetting() {
       router.push("setting");
+    }
+
+    @Watch("tagList")
+    innerTag() {
+      window.localStorage.setItem("tagList", JSON.stringify(this.tagList));
+      router.push("numberMap");
     }
   }
 
@@ -104,6 +117,12 @@
             > .tagIcon {
                 width: 100%;
                 height: 100%;
+            }
+            &.setting{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 30px;
             }
         }
     }

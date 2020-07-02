@@ -2,8 +2,8 @@
     <Layout>
         <div class="billTitle">
             <label class="year">
-                year</label>
-            <label class="mouths">{{n}}</label>
+                {{year}}年</label>
+            <label class="mouths">{{n}}月</label>
             <div class="input">收 入
                 <div>0.00</div>
             </div>
@@ -11,13 +11,10 @@
                 <div>0.00</div>
             </div>
         </div>
-        <div class="inTag" @click="toDetail">
-            <div class="outText">支出</div>
-            <div class="outList">衣 <span>100</span></div>
-        </div>
         <div class="outTag" @click="toDetail">
-            <div class="inText">收入</div>
-            <div class="inList">工资 <span>100</span></div>
+            <div class="outList" v-for="name in textList" :key="name.index">
+                <Icon :name="name"/>
+                <span>100</span></div>
         </div>
     </Layout>
 </template>
@@ -27,12 +24,33 @@
   import router from "@/router";
   import {Component} from "vue-property-decorator";
 
+  type allList={
+    textList: string;
+    numberList: string;
+  }
   @Component
   export default class Bill extends Vue {
-    n = "6月";
+    year = "";
+    n = "";
+    textList: string[] = [];
+    numberList: string[] =[]
 
     toDetail() {
       router.push("detail");
+    }
+    created() {
+      this.textList = JSON.parse(window.localStorage.getItem("tagList") || "[]");
+      this.numberList  = JSON.parse(window.localStorage.getItem('textList') || '[]')
+      const x = this.numberList
+      console.log(x);
+      console.log(this.textList);
+    }
+
+    mounted() {
+      const years = new Date().getUTCFullYear();
+      this.year = years.toString();
+      const month = new Date().getMonth() + 1;
+      this.n = month.toString();
     }
 
   }
@@ -51,7 +69,8 @@
         > .year {
             position: absolute;
             left: 30px;
-
+            font-size: 40px;
+            padding: 10px 0;
         }
 
         > .mouths {
@@ -77,14 +96,14 @@
         }
     }
 
-    .inTag {
+
+
+    .outTag {
         margin: 20px 0;
         font-size: 26px;
-        height: 30vh;
-        display: flex;
-        justify-content: space-between;
+        height: 70vh;
         flex-wrap: wrap;
-        overflow: hidden;
+        overflow: scroll;
 
         > .outList {
             display: flex;
@@ -92,7 +111,7 @@
             align-items: center;
             width: 100%;
             height: 8vh;
-            padding: 0 10px;
+            padding: 0 20px;
             margin: 5px 0;
             border-radius: 30px;
             background: white;
@@ -102,48 +121,6 @@
         }
 
 
-        > .outText {
-            text-align: right;
-            width: 100%;
-            height: 50px;
-            padding: 3px 20px;
-            border-radius: 20px;
-            background: #ffcd00;
-        }
-
-    }
-
-    .outTag {
-        margin: 20px 0;
-        font-size: 26px;
-        height: 30vh;
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        overflow: hidden;
-
-        > .inList {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            height: 8vh;
-            padding: 0 10px;
-            margin: 5px 0;
-            border-radius: 30px;
-            background: white;
-            color: black;
-            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        > .inText {
-            text-align: right;
-            width: 100%;
-            height: 50px;
-            padding: 3px 20px;
-            border-radius: 30px;
-            background: #ffcd00;
-        }
     }
 
 

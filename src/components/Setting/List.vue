@@ -19,6 +19,8 @@
     tags: string[] = ["xxx", "add", "my", "detail", "statistics", "bill"];
     selectTags: string[] = [];
 
+
+
     chooseIcon(tag: string) {
       const index = this.selectTags.indexOf(tag);
       if (index >= 0) {
