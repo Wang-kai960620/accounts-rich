@@ -3,5 +3,9 @@ type RecordItem = {
   type: string;
   tags: string;
   amount: number;
-  timeAt?: string;
+  timeAt: string;
+}
+type Fit = {
+  tag: string;
+  text: string;
 }

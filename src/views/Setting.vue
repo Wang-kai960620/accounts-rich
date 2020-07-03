@@ -16,7 +16,7 @@
   import router from "@/router";
 
 
-  type fitList = {
+  type Fit = {
     tag: string;
     text: string;
   }
@@ -24,8 +24,8 @@
     components: {Inner, List, SettingTitle}
   })
   export default class Setting extends Vue {
-    settingList: fitList[] = [];
-    settingText: fitList = {
+    settingList: Fit[] = [];
+    settingText: Fit = {
       tag: "",
       text: ""
     };

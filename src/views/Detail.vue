@@ -1,9 +1,12 @@
 <template>
     <Layout>
         <detailTitle/>
-        <DetailButton  :value.sync="type" />
-        <ul>
-            <li v-for="list in lists " :key="list" >{{list}}</li>
+        <DetailButton :value.sync="type"/>
+        <ul v-for="(group,index) in groupList" :key="index">
+            <li v-for="(item,index) in group.items" :key="index">
+                <Icon :name="item.tags"/>
+                <span>{{group.total}}</span>
+            </li>
         </ul>
     </Layout>
 </template>
@@ -20,20 +23,31 @@
   type RootItem = {
     recordList: RecordItem[];
   }
+
   @Component({components: {DetailButton, detailTitle}})
   export default class Detail extends Vue {
-    lists: string[]=['衣','食','住','行']
-    type ='-'
+    lists: string[] = ["衣", "食", "住", "行"];
+    type = "-";
+
+    created() {
+      console.log(this.groupList);
+    }
 
     get recordList() {
       return (this.$store.state as RootItem).recordList;
     }
 
-    // get groupList (){
-    //   const{recordList} = this
-    //   const newList = clone(recordList).sort((a, b) => dayjs(b.timeAt).valueOf() - dayjs(a.timeAt).valueOf());
-    //
-    // }
+    get groupList() {
+      const {recordList} = this;
+      // if (recordList.length === 0) {return;}
+      const newList = clone(recordList).sort((a, b) => dayjs(b.timeAt).valueOf() - dayjs(a.timeAt).valueOf());
+      type Result = { title: string; total?: number; items: RecordItem[] }[]
+      console.log(dayjs(newList[0].timeAt).format("YYYY-MM-DD"));
+      console.log(newList[0]);
+      const result: Result = [{title: dayjs(newList[0].timeAt).format("YYYY-MM-DD"), items: [newList[0]]}];
+      return result;
+
+    }
 
   }
 </script>

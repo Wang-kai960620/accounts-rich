@@ -13,7 +13,7 @@
         </div>
         <div class="outTag">
             <div class="outList" @click="toDetail"
-                 v-for="(name,index) in numberList" :key="index">
+                 v-for="(name,index) in moneyList" :key="index">
                 <Icon :name="name.tags" class="icon"/>
                 ￥{{name.amount}}
             </div>
@@ -35,10 +35,9 @@
   @Component
   export default class Bill extends Vue {
     year = "";
-    inMoney = "0.00;";
+    inMoney = "0.00";
     outMoney = "0.00";
     n = "";
-    numberList: RecordItem[] = [];
 
 
     toDetail() {
@@ -47,8 +46,6 @@
 
     created() {
       this.$store.commit("fetchRecords");
-      this.numberList = this.moneyList;
-      console.log(this.moneyList);
     }
 
     mounted() {
@@ -64,12 +61,12 @@
 
     get moneyList() {
       const {recordList} = this;
+      // if (recordList.length === 0) {return; }
       const newList = clone(recordList).sort((a, b) => dayjs(b.timeAt).valueOf() - dayjs(a.timeAt).valueOf());
-      const nowMonth = newList.filter(item=>dayjs(item.timeAt).isSame(dayjs().valueOf(),'year'))
-      const nowMonth2 = nowMonth.filter(item=>dayjs(item.timeAt).isSame(dayjs().valueOf(),'month'))
+      const nowMonth = newList.filter(item => dayjs(item.timeAt).isSame(dayjs().valueOf(), "year"));
+      const nowMonth2 = nowMonth.filter(item => dayjs(item.timeAt).isSame(dayjs().valueOf(), "month"));
       this.inMoney = nowMonth2.filter(item => item.type === "+").reduce((sum, items) => {return sum + items.amount;}, 0).toString();
-      this.outMoney  = nowMonth2.filter(item => item.type === "-").reduce((sum, items) => {return sum + items.amount;}, 0).toString();
-
+      this.outMoney = nowMonth2.filter(item => item.type === "-").reduce((sum, items) => {return sum + items.amount;}, 0).toString();
       return nowMonth2;
     }
 

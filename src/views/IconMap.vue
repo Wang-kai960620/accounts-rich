@@ -13,8 +13,10 @@
             <div v-for="tag in tags" :key="tag.index" @click="toNumberMap(tag)">
                 <Icon :name="tag" class="tagIcon"/>
             </div>
-
-            <div @click="toSetting" class="setting" >
+            <div v-for="(name,index) in renderLi" :key="index">
+                <Icon :name="name.tag" class ="newIcon"/>
+            </div>
+            <div @click="toSetting" class="setting"  >
                 <span>
                 设置
                 </span>
@@ -27,7 +29,7 @@
   import Vue from "vue";
   import {Component} from "vue-property-decorator";
   import router from "@/router";
-  import logger from "vuex/dist/logger";
+
 
 
   @Component
@@ -43,10 +45,10 @@
       this.type = Type;
     }
 
-    created(){
-      const x = JSON.parse(window.localStorage.getItem('settingList') || "[]")
+    get renderLi (){
+      const x = JSON.parse(window.localStorage.getItem('settingList') || '[]')as Fit []
       console.log(x);
-      console.log(x.toString());
+      return x
     }
 
     toNumberMap(tag: string) {
@@ -127,7 +129,11 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                font-size: 20px;
+                font-size: 30px;
+            }
+            >.newIcon{
+                width: 50%;
+                height: 50%;
             }
 
         }
