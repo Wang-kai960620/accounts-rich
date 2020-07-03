@@ -13,7 +13,7 @@
             <div v-for="tag in tags" :key="tag.index" @click="toNumberMap(tag)">
                 <Icon :name="tag" class="tagIcon"/>
             </div>
-            <div v-for="name in settingName" :key="name.index">
+            <div v-for="(name,index) in tag" :key="index">
                 <Icon :name="name.tag" class="newIcon"/>
             </div>
             <div @click="toSetting" class="setting" >
@@ -29,29 +29,23 @@
   import Vue from "vue";
   import {Component} from "vue-property-decorator";
   import router from "@/router";
+  import logger from "vuex/dist/logger";
 
-  type settingNumber ={
-    text: string;
-    settingTag: string;
-  }
+  // type settingNumber ={
+  //   text: string;
+  //   settingTag: string;
+  // }
   @Component
   export default class IconMap extends Vue {
-    tag: FitItem = {
-      tags: "",
-      type: "",
-    };
+    tag  =''
 
-    settingName: settingNumber={
-      text:'',
-      settingTag:''
+    // settingName: settingNumber={
+    //   text:'',
+    //   settingTag:''
+    //
+    // }
 
-    }
 
-    created() {
-      this.$store.commit("fetchFits");
-      // this.$store.commit("fetchRecords");
-      this.settingName = JSON.parse(window.localStorage.getItem("settingList") || "[]")
-    }
 
     tags = ["clothes", "eat", "home", "travel"];
     type = "-";  //-表示支出，+表示收入
@@ -60,16 +54,12 @@
         throw new Error("Type is undefined");
       }
       this.type = Type;
-      this.tag.type = Type;
     }
 
     toNumberMap(tag: string) {
-      this.tag.tags = tag;
-      // this.$store.commit('fitList',this.tag)
-      // this.$store.commit('editingItem', {
-      //   type: this.tag.type,
-      //   amount: null,
-      // })
+      this.tag = tag;
+      this.$store.state.editingItem.type = this.type
+      this.$store.state.editingItem.tags = this.tag
       router.push("numberMap");
     }
 

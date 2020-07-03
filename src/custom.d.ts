@@ -4,7 +4,3 @@ type RecordItem = {
   tags: string;
   amount: number;
 }
-type FitItem = {
-  tags: string;
-  type: string;
-}

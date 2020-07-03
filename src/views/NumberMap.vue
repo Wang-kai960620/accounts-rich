@@ -25,28 +25,27 @@
     get recordList() {
       return this.$store.state.recordList;
     }
-    text: RecordItem = {
-      notes: "",
-      type:'',
-      tags:'',
-      amount: 0
-    };
+
 
     created() {
-      this.$store.commit('fetchRecords')
+      this.$store.commit("fetchRecords");
+
+      console.log(this.$store.state.editingItem);
     }
 
     onUpdateAmount(value: string) {
-      this.text.amount = parseFloat(value);
+      this.$store.state.editingItem.amount = parseFloat(value);
     }
 
     onUpdateType(value: string) {
-      this.text.notes = value;
+      this.$store.state.editingItem.notes = value;
     }
 
     saveAmount() {
-      this.$store.commit('createRecords',this.text)
-      router.push('/');
+      const inDate = new Date();
+      this.$store.state.editingItem.timeAt = inDate.toString();
+      this.$store.commit("createRecords", this.$store.state.editingItem);
+      router.push("/");
     }
 
   }
