@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    recordList: [] as RecordItem[],
+    recordList: [] as RecordItem [],
     editingItem: {} as RecordItem
   },
   mutations: {

@@ -89,8 +89,8 @@
       this.output = '0'
     }
     addButton(){
-      this.$emit("update:value",this.output)
-      this.$emit('change',this.output)
+      this.$emit("update:value",parseFloat(this.output))
+      this.$emit('change',parseFloat(this.output))
       this.output='0'
     }
   }

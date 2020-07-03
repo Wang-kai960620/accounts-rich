@@ -3,7 +3,7 @@
         <detailTitle/>
         <DetailButton  :value.sync="type" />
         <ul>
-            <li v-for="list in lists " :key="list" >{{list}} </li>
+            <li v-for="list in lists " :key="list" >{{list}}</li>
         </ul>
     </Layout>
 </template>
@@ -15,10 +15,17 @@
   import DetailButton from "@/components/Detail/DetailButton.vue";
   import {Component} from "vue-property-decorator";
 
+  type RootItem = {
+    recordList: RecordItem[];
+  }
   @Component({components: {DetailButton, detailTitle}})
   export default class Detail extends Vue {
     lists: string[]=['衣','食','住','行']
     type ='-'
+
+    get recordList() {
+      return (this.$store.state as RootItem).recordList;
+    }
 
   }
 </script>
@@ -32,7 +39,8 @@
         width: 80%;
 
         > li {
-            margin: auto;
+            border: 1px solid red;
+            margin: 0 10px;
             width: 100%;
             list-style: none;
             border-radius: 30px 30px 30px 30px;

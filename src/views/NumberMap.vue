@@ -42,8 +42,7 @@
     }
 
     saveAmount() {
-      const inDate = new Date();
-      this.$store.state.editingItem.timeAt = inDate.toString();
+      this.$store.state.editingItem.timeAt = new Date().toISOString();
       this.$store.commit("createRecords", this.$store.state.editingItem);
       router.push("/");
     }

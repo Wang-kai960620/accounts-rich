@@ -4,18 +4,18 @@
             <label class="year">
                 {{year}}年</label>
             <label class="mouths">{{n}}月</label>
-            <div class="input" v-for="(money,index) in numberList" :key="index">收 入
-                <div>{{inMoney}}</div>
+            <div class="input">收 入
+                <div>{{inMoney}}元</div>
             </div>
             <div class="output">支 出
-                <div>{{outMoney}}</div>
+                <div>{{outMoney}}元</div>
             </div>
         </div>
         <div class="outTag">
             <div class="outList" @click="toDetail"
                  v-for="(name,index) in numberList" :key="index">
-                <Icon :name="name.tags"/>
-                {{inMoney}}
+                <Icon :name="name.tags" class="icon"/>
+                ￥{{name.amount}}
             </div>
         </div>
     </Layout>
@@ -25,7 +25,12 @@
   import Vue from "vue";
   import router from "@/router";
   import {Component} from "vue-property-decorator";
+  import clone from "@/lib/clone";
+  import dayjs from "dayjs";
 
+  type RootItem = {
+    recordList: RecordItem[];
+  }
 
   @Component
   export default class Bill extends Vue {
@@ -43,7 +48,7 @@
     created() {
       this.$store.commit("fetchRecords");
       this.numberList = this.$store.state.recordList;
-
+      console.log(this.moneyList);
     }
 
     mounted() {
@@ -51,6 +56,21 @@
       this.year = years.toString();
       const month = new Date().getMonth() + 1;
       this.n = month.toString();
+    }
+
+    get recordList() {
+      return (this.$store.state as RootItem).recordList;
+    }
+
+    get moneyList() {
+      const {recordList} = this;
+      const newList = clone(recordList).sort((a, b) => dayjs(b.timeAt).valueOf() - dayjs(a.timeAt).valueOf());
+      const inCome = newList.filter(item => item.type === "+")
+      this.inMoney = inCome.reduce((sum,items)=>{return sum+items.amount},0)
+      const expend = newList.filter(item => item.type === "-")
+      this.outMoney = expend.reduce((sum,items)=>{return sum + items.amount},0)
+
+      return newList;
     }
 
   }
@@ -116,6 +136,7 @@
             background: white;
             color: black;
             box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
+            font-size: 26px;
 
         }
 

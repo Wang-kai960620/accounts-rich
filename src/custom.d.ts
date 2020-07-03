@@ -3,4 +3,5 @@ type RecordItem = {
   type: string;
   tags: string;
   amount: number;
+  timeAt?: string;
 }
