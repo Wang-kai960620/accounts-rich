@@ -14,6 +14,8 @@
   import detailTitle from "@/components/Detail/detailTitle.vue";
   import DetailButton from "@/components/Detail/DetailButton.vue";
   import {Component} from "vue-property-decorator";
+  import clone from "@/lib/clone";
+  import dayjs from "dayjs";
 
   type RootItem = {
     recordList: RecordItem[];
@@ -26,6 +28,12 @@
     get recordList() {
       return (this.$store.state as RootItem).recordList;
     }
+
+    // get groupList (){
+    //   const{recordList} = this
+    //   const newList = clone(recordList).sort((a, b) => dayjs(b.timeAt).valueOf() - dayjs(a.timeAt).valueOf());
+    //
+    // }
 
   }
 </script>

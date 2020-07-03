@@ -35,8 +35,8 @@
   @Component
   export default class Bill extends Vue {
     year = "";
-    inMoney = 0.00;
-    outMoney = 0.00;
+    inMoney = "0.00;";
+    outMoney = "0.00";
     n = "";
     numberList: RecordItem[] = [];
 
@@ -47,7 +47,7 @@
 
     created() {
       this.$store.commit("fetchRecords");
-      this.numberList = this.$store.state.recordList;
+      this.numberList = this.moneyList;
       console.log(this.moneyList);
     }
 
@@ -65,12 +65,12 @@
     get moneyList() {
       const {recordList} = this;
       const newList = clone(recordList).sort((a, b) => dayjs(b.timeAt).valueOf() - dayjs(a.timeAt).valueOf());
-      const inCome = newList.filter(item => item.type === "+")
-      this.inMoney = inCome.reduce((sum,items)=>{return sum+items.amount},0)
-      const expend = newList.filter(item => item.type === "-")
-      this.outMoney = expend.reduce((sum,items)=>{return sum + items.amount},0)
+      const nowMonth = newList.filter(item=>dayjs(item.timeAt).isSame(dayjs().valueOf(),'year'))
+      const nowMonth2 = nowMonth.filter(item=>dayjs(item.timeAt).isSame(dayjs().valueOf(),'month'))
+      this.inMoney = nowMonth2.filter(item => item.type === "+").reduce((sum, items) => {return sum + items.amount;}, 0).toString();
+      this.outMoney  = nowMonth2.filter(item => item.type === "-").reduce((sum, items) => {return sum + items.amount;}, 0).toString();
 
-      return newList;
+      return nowMonth2;
     }
 
   }
