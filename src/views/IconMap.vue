@@ -13,9 +13,7 @@
             <div v-for="tag in tags" :key="tag.index" @click="toNumberMap(tag)">
                 <Icon :name="tag" class="tagIcon"/>
             </div>
-            <div v-for="(name,index) in tag" :key="index">
-                <Icon :name="name.tag" class="newIcon"/>
-            </div>
+
             <div @click="toSetting" class="setting" >
                 <span>
                 设置
@@ -31,21 +29,10 @@
   import router from "@/router";
   import logger from "vuex/dist/logger";
 
-  // type settingNumber ={
-  //   text: string;
-  //   settingTag: string;
-  // }
+
   @Component
   export default class IconMap extends Vue {
     tag  =''
-
-    // settingName: settingNumber={
-    //   text:'',
-    //   settingTag:''
-    //
-    // }
-
-
 
     tags = ["clothes", "eat", "home", "travel"];
     type = "-";  //-表示支出，+表示收入
@@ -54,6 +41,12 @@
         throw new Error("Type is undefined");
       }
       this.type = Type;
+    }
+
+    created(){
+      const x = JSON.parse(window.localStorage.getItem('settingList') || "[]")
+      console.log(x);
+      console.log(x.toString());
     }
 
     toNumberMap(tag: string) {
@@ -118,6 +111,7 @@
             float: left;
             display: flex;
             justify-content: center;
+            align-items: center;
             text-align: center;
             margin: 10px;
             border-radius: 50%;
@@ -125,20 +119,17 @@
             box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
 
             > .tagIcon {
-                width: 100%;
-                height: 100%;
+                width: 50%;
+                height: 50%;
             }
 
             &.setting {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                font-size: 30px;
+                font-size: 20px;
             }
-            >.newIcon{
-                width: 100%;
-                height: 100%;
-            }
+
         }
     }
 

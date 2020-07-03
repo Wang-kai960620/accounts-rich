@@ -52,13 +52,12 @@
             align-items: center;
 
             &.select {
-                background: #838383;
+                background: rgb(255, 205, 0);
             }
-
             > .icon {
 
-                width: 80px;
-                height: 80px;
+                width: 50px;
+                height: 50px;
             }
         }
     }
