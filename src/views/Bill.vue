@@ -61,6 +61,7 @@
 
     get moneyList() {
       const {recordList} = this;
+      //TODO
       // if (recordList.length === 0) {return; }
       const newList = clone(recordList).sort((a, b) => dayjs(b.timeAt).valueOf() - dayjs(a.timeAt).valueOf());
       const nowMonth = newList.filter(item => dayjs(item.timeAt).isSame(dayjs().valueOf(), "year"));
@@ -86,13 +87,13 @@
         > .year {
             position: absolute;
             left: 30px;
-            font-size: 40px;
+            font-size: 30px;
             padding: 10px 0;
         }
 
         > .mouths {
             position: absolute;
-            font-size: 56px;
+            font-size: 50px;
             bottom: 0;
             left: 30px;
             font-family: monospace, Consolas;
