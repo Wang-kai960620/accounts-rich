@@ -4,10 +4,10 @@
         <DetailButton :value="type" @update:value="onchange"/>
 
         <ol v-for="(group,index) in groupList" :key="index" class="list">
-            <li>{{group.title}}</li>
+            <li class="time">{{group.title}}<span>￥{{group.total}}</span></li>
             <li v-for="(item,index) in group.items" :key="index" class="listLi">
                 <Icon :name="item.tags" class="icon"/>
-                <span>{{group.total}}</span>
+                <span>￥{{item.amount}}</span>
             </li>
         </ol>
     </Layout>
@@ -36,9 +36,8 @@
 
     get groupList() {
       const {recordList} = this;
-      //TODO
-      // if (recordList.length === 0) {return;}
-      const newList = clone(recordList).filter(item=>item.type === this.type).sort((a, b) => dayjs(b.timeAt).valueOf() - dayjs(a.timeAt).valueOf());
+      if (recordList.length === 0) {return[];}
+      const newList = clone(recordList).filter(item => item.type === this.type).sort((a, b) => dayjs(b.timeAt).valueOf() - dayjs(a.timeAt).valueOf());
       type Result = { title: string; total?: number; items: RecordItem[] }[]
       console.log(dayjs(newList[0].timeAt).format("YYYY-MM-DD"));
       console.log(newList[0]);
@@ -72,21 +71,37 @@
 <style lang="scss" scoped>
 
     .list {
-        font-size: 2em;
+        font-size: 25px;
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        padding: 5px 10px ;
+        >.time{
+            display: flex;
+            justify-content: space-between;
+            background: white;
+            width: 100%;
+            >span{
+                padding: 0 15px;
+
+            }
+
+        }
 
         > .listLi {
             display: flex;
             justify-content: space-between;
-            border: 1px solid red;
-            margin: 0 10px;
+            align-items: center;
+            margin: 2px 0;
             width: 100%;
             list-style: none;
             border-radius: 30px 30px 30px 30px;
+            padding: 0 15px;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
+            background: white;
+
         }
-        >.icon{
+
+        > .icon {
             width: 50px;
             height: 50px;
         }

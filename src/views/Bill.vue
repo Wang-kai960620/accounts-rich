@@ -61,8 +61,7 @@
 
     get moneyList() {
       const {recordList} = this;
-      //TODO
-      // if (recordList.length === 0) {return; }
+      if (recordList.length === 0) {return [] }
       const newList = clone(recordList).sort((a, b) => dayjs(b.timeAt).valueOf() - dayjs(a.timeAt).valueOf());
       const nowMonth = newList.filter(item => dayjs(item.timeAt).isSame(dayjs().valueOf(), "year"));
       const nowMonth2 = nowMonth.filter(item => dayjs(item.timeAt).isSame(dayjs().valueOf(), "month"));
