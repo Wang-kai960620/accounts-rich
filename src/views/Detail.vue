@@ -39,8 +39,6 @@
       if (recordList.length === 0) {return[];}
       const newList = clone(recordList).filter(item => item.type === this.type).sort((a, b) => dayjs(b.timeAt).valueOf() - dayjs(a.timeAt).valueOf());
       type Result = { title: string; total?: number; items: RecordItem[] }[]
-      console.log(dayjs(newList[0].timeAt).format("YYYY-MM-DD"));
-      console.log(newList[0]);
       const result: Result = [{title: dayjs(newList[0].timeAt).format("YYYY-MM-DD"), items: [newList[0]]}];
       for (let i = 1; i < newList.length; i++) {
         const current = newList[i];
@@ -54,8 +52,6 @@
       }
       result.map(group => {
         group.total = group.items.reduce((sum, item) => {
-          console.log(sum);
-          console.log(item);
           return sum + item.amount;
         }, 0);
       });
