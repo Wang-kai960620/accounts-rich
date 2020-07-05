@@ -44,11 +44,8 @@
       router.push("detail");
     }
 
-    created() {
-      this.$store.commit("fetchRecords");
-    }
-
     mounted() {
+      this.$store.commit("fetchRecords");
       const years = new Date().getUTCFullYear();
       this.year = years.toString();
       const month = new Date().getMonth() + 1;

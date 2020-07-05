@@ -30,6 +30,9 @@
   export default class Detail extends Vue {
     type = "-";
 
+    created(){
+      this.$store.commit('fetchRecords')
+    }
     get recordList() {
       return (this.$store.state as RootItem).recordList;
     }
