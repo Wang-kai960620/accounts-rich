@@ -27,70 +27,46 @@
   })
   export default class Statistics extends Vue {
 
-
     option = {
-      backgroundColor: '#2c343c',
-
-      title: {
-        // text: "Customized Pie",
-        left: "center",
-        top: 20,
-        textStyle: {
-          color: "#ccc"
-        }
-      },
-
       tooltip: {
-        trigger: "item",
-        formatter: "{a} <br/>{b} : {c} ({d}%)"
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: {c} ({d}%)'
       },
-
-      visualMap: {
-        show: false,
-        min: 80,
-        max: 600,
-        inRange: {
-          colorLightness: [0, 1]
-        }
+      legend: {
+        orient: 'vertical',
+        left: 10,
+        data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
       },
       series: [
         {
-          name: "访问来源",
-          type: "pie",
-          radius: "65%",
-          center: ["50%", "50%"],
-          data: [
-            ...this.renderSource
-          ],
-          roseType: "radius",
+          name: '访问来源',
+          type: 'pie',
+          radius: ['50%', '70%'],
+          avoidLabelOverlap: false,
           label: {
-            color: 'rgba(255, 255, 255, 0.3)'
+            show: false,
+            position: 'center'
+          },
+          emphasis: {
+            label: {
+              show: true,
+              fontSize: '30',
+              fontWeight: 'bold'
+            }
           },
           labelLine: {
-            lineStyle: {
-              color: 'rgba(255, 255, 255, 0.3)'
-            },
-            smooth: 0.2,
-            length: 3,
-            length2: 10
+            show: false
           },
-          itemStyle: {
-            color: "#c23531",
-            shadowColor: "rgba(0, 0, 0, 0.5)"
-          },
-
-          animationType: "scale",
-          animationEasing: "elasticOut",
+          data: [
+            ...this.renderSource
+          ]
         }
-
       ]
     };
 
+
     created() {
       this.$store.commit("fetchRecords");
-      console.log(',',this.$store.state.recordList);
-      console.log(this.renderSource);
-      console.log(...this.renderSource);
     }
 
     get recordList() {
@@ -102,23 +78,22 @@
       if (recordList.length === 0) {return [];}
       const newList = clone(recordList).sort((a, b) => dayjs(b.timeAt).valueOf() - dayjs(a.timeAt).valueOf());
       type RenderSource = { value: number; name: string }[]
-      const inMoney = newList.filter(item=>item.type==='-').reduce((sum,item)=>{return sum+ item.amount},0)
-      const outMoney = newList.filter(item=>item.type==='+').reduce((sum,item)=>{return sum+ item.amount},0)
-      const result: RenderSource = [{name:'支出',value:inMoney}]
-      result.push({name:'支出',value:outMoney})
-      // const result: RenderSource = [{name: newList[0].tags, value: newList[0].amount}];
-      // for (let i = 1; i < newList.length; i++) {
-      //   const target = newList[i];
-      //   const last = result[result.length - 1];
-      //   if (target.tags === last.name) {
-      //     last.value = target.amount + last.value;
-      //   } else {
-      //     result.push({name: target.tags, value: target.amount});
-      //   }
-      // }
+      // const inMoney = newList.filter(item => item.type === "-").reduce((sum, item) => {return sum + item.amount;}, 0);
+      // const outMoney = newList.filter(item => item.type === "+").reduce((sum, item) => {return sum + item.amount;}, 0);
+      // const result: RenderSource = [{name: "支出", value: inMoney}];
+      // result.push({name: "收入", value: outMoney});
+      const result: RenderSource = [{name: newList[0].tags, value: newList[0].amount}];
+      for (let i = 1; i < newList.length; i++) {
+        const target = newList[i];
+        const last = result[result.length - 1];
+        if (target.tags === last.name) {
+          last.value = target.amount + last.value;
+        } else {
+          result.push({name: target.tags, value: target.amount});
+        }
+      }
       return result;
     }
-
 
 
   }

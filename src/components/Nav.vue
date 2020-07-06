@@ -24,7 +24,7 @@
         </router-link>
         <router-link to="/my" class="item" active-class="selected">
             <Icon name="my"/>
-            我的
+            标签
         </router-link>
     </nav>
 </template>

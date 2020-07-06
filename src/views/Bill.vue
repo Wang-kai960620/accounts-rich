@@ -76,7 +76,7 @@
         display: flex;
         position: relative;
         font-size: 26px;
-        border-radius: 0 0 30px 30px;
+        border-radius: 0 0 20px 20px;
         background: #ffcd00;
         box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 

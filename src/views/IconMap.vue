@@ -32,7 +32,6 @@
   import router from "@/router";
 
 
-
   @Component
   export default class IconMap extends Vue {
     tag  =''
@@ -48,9 +47,7 @@
     }
 
     get renderLi (){
-      const x = JSON.parse(window.localStorage.getItem('settingList') || '[]')as Fit []
-      console.log(x);
-      return x
+      return JSON.parse(window.localStorage.getItem('settingList') || '[]') as Fit []
     }
 
     toNumberMap(tag: string) {
