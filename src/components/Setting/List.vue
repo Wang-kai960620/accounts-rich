@@ -16,7 +16,7 @@
 
   @Component
   export default class List extends Vue {
-    tags: string[] = ["xxx", "add", "my", "detail", "statistics", "bill"];
+    tags: string[] = ["travel", "eat", "shopping", "cook", "redEvelop", "tourism"];
     selectTags: string[] = [];
 
 

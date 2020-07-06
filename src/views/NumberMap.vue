@@ -29,8 +29,6 @@
 
     created() {
       this.$store.commit("fetchRecords");
-
-      console.log(this.$store.state.editingItem);
     }
 
     onUpdateAmount(value: string) {

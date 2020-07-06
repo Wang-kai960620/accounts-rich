@@ -14,11 +14,10 @@
 
     mounted() {
       const div =this.$refs.container as HTMLDivElement
-      console.log(this.$refs.container);
       const width = document.documentElement.clientWidth;
-      div.style.width = `${width}px`;
-      div.style.height = `${width * 1.2}px`
-      const chart = echarts.init(this.$refs.container as HTMLDivElement, "light");
+      div.style.width = `${width * 0.8}px`;
+      div.style.height = `${width }px`
+      const chart = echarts.init(div, "light");
       chart.setOption(this.option);
     }
 

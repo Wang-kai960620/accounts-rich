@@ -32,7 +32,6 @@
 
     created() {
       this.settingList = JSON.parse(window.localStorage.getItem('settingList') || '[]')
-
     }
 
     onUpdateTag(value: string) {
@@ -40,6 +39,7 @@
     }
 
     addText(value: string) {
+      if (value.length>4){ return window.alert('最多可输入四个字符')}
       this.settingText.text = value;
       const settingText2 = JSON.parse(JSON.stringify(this.settingText));
       this.settingList.push(settingText2);

@@ -13,8 +13,9 @@
             <div v-for="tag in tags" :key="tag.index" @click="toNumberMap(tag)">
                 <Icon :name="tag" class="tagIcon"/>
             </div>
-            <div v-for="(name,index) in renderLi" :key="index">
+            <div v-for="(name,index) in renderLi" :key="index" @click="toNumberMap(name.tag)">
                 <Icon :name="name.tag" class ="newIcon"/>
+                <span class="texts">{{name.text}}</span>
             </div>
             <div @click="toSetting" class="setting"  >
                 <span>
@@ -35,6 +36,7 @@
   @Component
   export default class IconMap extends Vue {
     tag  =''
+
 
     tags = ["clothes", "eat", "home", "travel"];
     type = "-";  //-表示支出，+表示收入
@@ -112,6 +114,7 @@
             height: 80px;
             float: left;
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             align-items: center;
             text-align: center;
@@ -134,6 +137,10 @@
             >.newIcon{
                 width: 50%;
                 height: 50%;
+            }
+            >.texts{
+                width: 100%;
+                font-size: 16px;
             }
 
         }

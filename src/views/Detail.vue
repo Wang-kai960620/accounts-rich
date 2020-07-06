@@ -7,6 +7,7 @@
             <li class="time">{{group.title}}<span>￥{{group.total}}</span></li>
             <li v-for="(item,index) in group.items" :key="index" class="listLi">
                 <Icon :name="item.tags" class="icon"/>
+                <span class="remark">{{item.notes}}</span>
                 <span>￥{{item.amount}}</span>
             </li>
         </ol>
@@ -30,17 +31,19 @@
   export default class Detail extends Vue {
     type = "-";
 
-    created(){
-      this.$store.commit('fetchRecords')
+    created() {
+      this.$store.commit("fetchRecords");
     }
+
     get recordList() {
       return (this.$store.state as RootItem).recordList;
     }
 
     get groupList() {
       const {recordList} = this;
-      if (recordList.length === 0) {return[];}
-      const newList = clone(recordList).filter(item => item.type === this.type).sort((a, b) => dayjs(b.timeAt).valueOf() - dayjs(a.timeAt).valueOf());
+      if (recordList.length === 0) {return [];}
+      const newList = clone(recordList).filter(item => item.type === this.type)
+        .sort((a, b) => dayjs(b.timeAt).valueOf() - dayjs(a.timeAt).valueOf());
       type Result = { title: string; total?: number; items: RecordItem[] }[]
       const result: Result = [{title: dayjs(newList[0].timeAt).format("YYYY-MM-DD"), items: [newList[0]]}];
       for (let i = 1; i < newList.length; i++) {
@@ -73,13 +76,15 @@
         font-size: 25px;
         display: flex;
         flex-wrap: wrap;
-        padding: 5px 10px ;
-        >.time{
+        padding: 5px 10px;
+
+        > .time {
             display: flex;
             justify-content: space-between;
             background: white;
             width: 100%;
-            >span{
+
+            > span {
                 padding: 0 15px;
 
             }
@@ -104,6 +109,11 @@
             width: 50px;
             height: 50px;
         }
+    }
+
+    .remark {
+        font-size: 20px;
+        color: #c4c4c4;
     }
 
 </style>
