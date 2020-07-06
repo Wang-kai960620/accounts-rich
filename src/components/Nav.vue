@@ -23,7 +23,7 @@
             统计
         </router-link>
         <router-link to="/my" class="item" active-class="selected">
-            <Icon name="my"/>
+            <Icon name="mark"/>
             标签
         </router-link>
     </nav>
