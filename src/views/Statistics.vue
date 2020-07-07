@@ -78,10 +78,6 @@
       if (recordList.length === 0) {return [];}
       const newList = clone(recordList).sort((a, b) => dayjs(b.timeAt).valueOf() - dayjs(a.timeAt).valueOf());
       type RenderSource = { value: number; name: string }[]
-      // const inMoney = newList.filter(item => item.type === "-").reduce((sum, item) => {return sum + item.amount;}, 0);
-      // const outMoney = newList.filter(item => item.type === "+").reduce((sum, item) => {return sum + item.amount;}, 0);
-      // const result: RenderSource = [{name: "支出", value: inMoney}];
-      // result.push({name: "收入", value: outMoney});
       const result: RenderSource = [{name: newList[0].tags, value: newList[0].amount}];
       for (let i = 1; i < newList.length; i++) {
         const target = newList[i];
