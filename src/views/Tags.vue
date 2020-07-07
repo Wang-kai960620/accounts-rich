@@ -3,85 +3,17 @@
         <detailTitle/>
         <div class="tagList">
             <ol>
-                <li>
-                    <Icon name="shopping" class="tag"/>
-                    <span>购物</span>
-                </li>
-                <li>
-                    <Icon name="shopping" class="tag"/>
-                    <span>购物</span>
-                </li>
-                <li>
-                    <Icon name="shopping" class="tag"/>
-                    <span>购物</span>
-                </li>
-                <li>
-                    <Icon name="shopping" class="tag"/>
-                    <span>购物</span>
-                </li>
-                <li>
-                    <Icon name="shopping" class="tag"/>
-                    <span>购物</span>
-                </li>
-                <li>
-                    <Icon name="shopping" class="tag"/>
-                    <span>购物</span>
-                </li>
-                <li>
-                    <Icon name="shopping" class="tag"/>
-                    <span>购物</span>
-                </li>
-                <li>
-                    <Icon name="shopping" class="tag"/>
-                    <span>购物</span>
-                </li>
-                <li>
-                    <Icon name="shopping" class="tag"/>
-                    <span>购物</span>
-                </li>
-                <li>
-                    <Icon name="shopping" class="tag"/>
-                    <span>购物</span>
-                </li>
-                <li>
-                    <Icon name="shopping" class="tag"/>
-                    <span>购物</span>
-                </li>
-                <li>
-                    <Icon name="shopping" class="tag"/>
-                    <span>购物</span>
-                </li>
-                <li>
-                    <Icon name="shopping" class="tag"/>
-                    <span>购物</span>
-                </li>
-                <li>
-                    <Icon name="shopping" class="tag"/>
-                    <span>购物</span>
-                </li>
-                <li>
-                    <Icon name="shopping" class="tag"/>
-                    <span>购物</span>
-                </li>
-                <li>
-                    <Icon name="shopping" class="tag"/>
-                    <span>购物</span>
-                </li>
-                <li>
-                    <Icon name="shopping" class="tag"/>
-                    <span>购物</span>
-                </li>
-                <li>
-                    <Icon name="shopping" class="tag"/>
-                    <span>购物</span>
+                <li v-for="(item,index) in this.tags" :key="index"
+                    @click="choose(item.tag,item.text)"
+                   >
+                    <Icon :name="item.tag" class="tag"/>
+                    <span>{{item.text}}</span>
                 </li>
             </ol>
             <button>
                 删除标签
             </button>
-
         </div>
-
     </Layout>
 </template>
 
@@ -90,15 +22,40 @@
   import detailTitle from "@/components/Detail/detailTitle.vue";
   import {Component} from "vue-property-decorator";
 
+  type TagList = { tag: string; text: string }
+
   @Component({
     components: {detailTitle}
   })
   export default class Tags extends Vue {
+    tags: TagList[] = [];
+    x: TagList = {
+      tag: "",
+      text: ""
+    };
 
 
+    created() {
+      this.tags = JSON.parse(window.localStorage.getItem("settingList") || "[]");
+      console.log(this.tags);
+    }
 
     get recordList() {
       return this.$store.commit("fetchRecords");
+    }
+
+
+    // get teamList() {
+    //
+    //
+    //   return [];
+    // }
+
+    choose(value: string,y: string) {
+      console.log(value,y);
+      this.x.text = y
+      this.x.tag = value
+      console.log(this.x);
     }
 
 
@@ -172,7 +129,7 @@
                 max-width: 25vw;
                 margin: 5px 8px;
                 height: 60px;
-                border-radius: 10px 10px 10px 10px ;
+                border-radius: 10px 10px 10px 10px;
                 border: 1px solid red;
                 display: flex;
                 flex-wrap: wrap;
