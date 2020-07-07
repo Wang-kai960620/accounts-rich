@@ -5,12 +5,12 @@
             <ol>
                 <li v-for="(item,index) in this.tags" :key="index"
                     @click="choose(item.tag,item.text)"
-                   >
+                >
                     <Icon :name="item.tag" class="tag"/>
                     <span>{{item.text}}</span>
                 </li>
             </ol>
-            <button>
+            <button @click="remove">
                 删除标签
             </button>
         </div>
@@ -20,7 +20,7 @@
 <script lang="ts">
   import Vue from "vue";
   import detailTitle from "@/components/Detail/detailTitle.vue";
-  import {Component} from "vue-property-decorator";
+  import {Component, Watch} from "vue-property-decorator";
 
   type TagList = { tag: string; text: string }
 
@@ -28,11 +28,9 @@
     components: {detailTitle}
   })
   export default class Tags extends Vue {
+    text = "";
+    tag = "";
     tags: TagList[] = [];
-    x: TagList = {
-      tag: "",
-      text: ""
-    };
 
 
     created() {
@@ -40,24 +38,20 @@
       console.log(this.tags);
     }
 
-    get recordList() {
-      return this.$store.commit("fetchRecords");
+
+    choose(icon: string, note: string) {
+      this.tag = icon;
+      this.text = note;
     }
 
-
-    // get teamList() {
-    //
-    //
-    //   return [];
-    // }
-
-    choose(value: string,y: string) {
-      console.log(value,y);
-      this.x.text = y
-      this.x.tag = value
-      console.log(this.x);
+    remove() {
+      for (let i = 0; i < this.tags.length; i++) {
+        if (this.tags[i].tag === this.tag && this.tags[i].text === this.text) {
+          this.tags.splice(i, 1);
+          window.localStorage.setItem("settingList", JSON.stringify(this.tags));
+        }
+      }
     }
-
 
   }
 </script>
