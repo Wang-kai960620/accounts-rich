@@ -73,6 +73,8 @@
 <style lang="scss" scoped>
 
     .list {
+        max-height: 60vh;
+        overflow: scroll;
         font-size: 25px;
         display: flex;
         flex-wrap: wrap;

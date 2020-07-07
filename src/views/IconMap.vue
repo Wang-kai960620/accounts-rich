@@ -99,10 +99,12 @@
         display: flex;
         flex-wrap: wrap;
         @extend %clearFix;
+        max-height: 60vh;
         margin: 30px auto;
         justify-content: center;
         width: 300px;
         text-align: center;
+        overflow: scroll;
 
 
         > div {

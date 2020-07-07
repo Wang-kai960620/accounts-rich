@@ -114,7 +114,7 @@
     .outTag {
         margin: 20px 0;
         font-size: 26px;
-        height: 70vh;
+        height: 60vh;
         flex-wrap: wrap;
         overflow: scroll;
 
