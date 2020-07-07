@@ -21,11 +21,11 @@
 
 
 
+
     chooseIcon(tag: string) {
       const index = this.selectTags.indexOf(tag);
-      if (index >= 0) {
-        this.selectTags.splice(index, 1);
-      } else {
+      if (index <= 0) {
+        this.selectTags.splice(0, 1);
         this.selectTags.push(tag);
         this.$emit("update:value",this.selectTags)
       }

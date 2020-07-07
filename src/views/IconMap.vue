@@ -35,10 +35,9 @@
   @Component
   export default class IconMap extends Vue {
     tag  =''
-
-
     tags = ["clothes", "eat", "home", "travel"];
     type = "-";  //-表示支出，+表示收入
+
     selectType(Type: string) {
       if (Type !== "-" && Type !== "+") {
         throw new Error("Type is undefined");

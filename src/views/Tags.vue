@@ -4,7 +4,8 @@
         <div class="tagList">
             <ol>
                 <li v-for="(item,index) in this.tags" :key="index"
-                    @click="choose(item.tag,item.text)"
+                    @click="choose(item.tag,item.text) "
+                    :class="{selected:middle.indexOf(item.text)>= 0}"
                 >
                     <Icon :name="item.tag" class="tag"/>
                     <span>{{item.text}}</span>
@@ -20,7 +21,7 @@
 <script lang="ts">
   import Vue from "vue";
   import detailTitle from "@/components/Detail/detailTitle.vue";
-  import {Component, Watch} from "vue-property-decorator";
+  import {Component} from "vue-property-decorator";
 
   type TagList = { tag: string; text: string }
 
@@ -31,17 +32,24 @@
     text = "";
     tag = "";
     tags: TagList[] = [];
+    middle: string[]=[]
+
 
 
     created() {
       this.tags = JSON.parse(window.localStorage.getItem("settingList") || "[]");
-      console.log(this.tags);
     }
 
 
     choose(icon: string, note: string) {
       this.tag = icon;
       this.text = note;
+      if(this.middle.indexOf(note)<=0){
+        this.middle.splice(0,1)
+        this.middle.push(note)
+        console.log(this.middle)
+
+      }
     }
 
     remove() {
@@ -116,6 +124,8 @@
             display: flex;
             flex-wrap: wrap;
             overflow: scroll;
+            box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, 0.25);
+            border-radius: 10px 10px 10px 10px;
 
 
             > li {
@@ -124,11 +134,15 @@
                 margin: 5px 8px;
                 height: 60px;
                 border-radius: 10px 10px 10px 10px;
-                border: 1px solid red;
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
                 align-items: center;
+                box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+
+               &.selected{
+                   background: #ffcd00;
+               }
 
                 > .tag {
                     width: 100%;
@@ -143,6 +157,8 @@
             height: 50px;
             padding: 10px 20px;
             border: none;
+            background: #ffcd00;
+            border-radius: 10px 10px 10px 10px;
         }
     }
 
