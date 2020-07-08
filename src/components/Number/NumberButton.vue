@@ -90,15 +90,16 @@
     }
     addButton(){
       const index = this.output.length-1
-      if(this.output[index] === '.' || this.output[index] === '0'){
-         window.alert('你这样记账不合规矩吧')
-        this.output = '0'
-      }else{
-        this.$emit("update:value",parseFloat(this.output))
-        this.$emit('change',parseFloat(this.output))
-        this.output='0'
+        if(this.output[index] === '.' || this.output === '0'){
+          window.alert('你这样记账不合规矩吧')
+          this.output = '0'
+        }else{
+          this.$emit("update:value",parseFloat(this.output))
+          this.$emit('change',parseFloat(this.output))
+          this.output='0'
+        }
       }
-    }
+
   }
 </script>
 
