@@ -24,7 +24,7 @@ window.onload = function () {
   }, 0);
 };
 if(document.documentElement.clientWidth > 500){
-  // window.alert('请扫描二维码，保证体验效果')
+  window.alert('请扫描二维码，保证体验效果')
   const img = document.createElement('img')
   img.src = '/QRcode.png'
   img.style.position = 'fixed'
