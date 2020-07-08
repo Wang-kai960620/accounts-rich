@@ -26,7 +26,7 @@ window.onload = function () {
 if(document.documentElement.clientWidth > 500){
   window.alert('请扫描二维码，保证体验效果')
   const img = document.createElement('img')
-  img.src = '/QRcode.png'
+  img.src = './QRcode.png'
   img.style.position = 'fixed'
   img.style.left = '50%'
   img.style.top = '50%'
