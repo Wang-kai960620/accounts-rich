@@ -5,8 +5,7 @@
             <ol>
                 <li v-for="(item,index) in this.tags" :key="index"
                     @click="choose(item.tag,item.text) "
-                    :class="{selected:middle.indexOf(item.text)>= 0}"
-                >
+                    :class="{selected:middle.indexOf(item.text)>= 0}">
                     <Icon :name="item.tag" class="tag"/>
                     <span>{{item.text}}</span>
                 </li>
@@ -32,8 +31,7 @@
     text = "";
     tag = "";
     tags: TagList[] = [];
-    middle: string[]=[]
-
+    middle: string[] = [];
 
 
     created() {
@@ -44,10 +42,10 @@
     choose(icon: string, note: string) {
       this.tag = icon;
       this.text = note;
-      if(this.middle.indexOf(note)<=0){
-        this.middle.splice(0,1)
-        this.middle.push(note)
-        console.log(this.middle)
+      if (this.middle.indexOf(note) <= 0) {
+        this.middle.splice(0, 1);
+        this.middle.push(note);
+        console.log(this.middle);
 
       }
     }
@@ -140,9 +138,9 @@
                 align-items: center;
                 box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 
-               &.selected{
-                   background: #ffcd00;
-               }
+                &.selected {
+                    background: #ffcd00;
+                }
 
                 > .tag {
                     width: 100%;

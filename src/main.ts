@@ -11,9 +11,15 @@ Vue.config.productionTip = false;
 
 Vue.component("Nav", Nav);
 Vue.component("Layout", Layout);
-Vue.component('Icon',Icons)
+Vue.component("Icon", Icons);
 new Vue({
   router,
   store,
   render: h => h(App)
 }).$mount("#app");
+
+window.onload = function () {
+  setTimeout(function () {
+    window.scroll(0, 200);
+  }, 0);
+};
