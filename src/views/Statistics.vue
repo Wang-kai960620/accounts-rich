@@ -31,7 +31,7 @@
 
     get arr() {
       const today = new Date();
-      const x = this.recordList.map(i => ({
+      const newRecordsList = this.recordList.map(i => ({
         timeAt: dayjs(i.timeAt).format("YYYY-MM-DD"),
         amount: i.amount,
         type: i.type
@@ -39,14 +39,12 @@
       const array = [];
       for (let i = 0; i < 29; i++) {
         const date = dayjs(today).subtract(i, "day").format("YYYY-MM-DD");
-        const amount = x.filter(t => t.timeAt === date).filter(i => i.type === this.choose).reduce((sum, item) => {return sum + item.amount;}, 0);
+        const amount = newRecordsList.filter(t => t.timeAt === date).filter(i => i.type === this.choose).reduce((sum, item) => {return sum + item.amount;}, 0);
         array.push({date: date, amount: amount});
       }
-      console.log(array);
-      console.log(x);
-      const z = array.sort((a, b) => dayjs(a.date).valueOf() - dayjs(b.date).valueOf());
-      const keys = z.map(t => t.date);
-      const values = z.map(t => t.amount);
+      array.sort((a, b) => dayjs(a.date).valueOf() - dayjs(b.date).valueOf());
+      const keys = array.map(t => t.date);
+      const values = array.map(t => t.amount);
       return {keys, values};
     }
 
@@ -62,6 +60,11 @@
           data: keys,
           axisTick: {
             alignWithLabel: true,
+          },
+          axisLabel: {
+            formatter: function (value: string, index: number) {
+              return value.substr(5);
+            }
           }
         },
         yAxis: {
@@ -73,7 +76,7 @@
           triggerOn: "click",
           position: "top",
           formatter: "{c}",
-          backgroundColor:'#ffcd00'
+          backgroundColor: "#ffcd00"
         },
         series: [{
           symbol: "circle",
@@ -94,9 +97,6 @@
 
     created() {
       this.$store.commit("fetchRecords");
-      console.log(this.arr.keys);
-      console.log(this.arr.values);
-      console.log("刷新了");
     }
 
     mounted() {
