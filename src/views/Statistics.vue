@@ -29,46 +29,62 @@
   export default class Statistics extends Vue {
     choose = "-";
 
-    option = {
-      grid: {
-        left: 0,
-        right: 0
-      },
-      xAxis: {
-        type: "category",
-        data: [
-          "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun",
-          "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun",
-          "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun",
-          "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"
-        ],
-        axisTick: {
-          alignWithLabel: true,
-        }
-      },
-      yAxis: {
-        type: "value",
-        show: false
-      },
-      tooltip: {
-        show: true,
-        triggerOn: "click",
-        position: "top",
-        formatter: "{c}"
-      },
-      series: [{
-        symbol: "circle",
-        symbolSize: 12,
-        itemStyle: {color: "#ffcd00"},
-        data: [
-          820, 932, 901, 934, 1290, 1330, 1320,
-          820, 932, 901, 934, 1290, 1330, 1320,
-          820, 932, 901, 934, 1290, 1330, 1320,
-          820, 932, 901, 934, 1290, 1330, 1320
-        ],
-        type: "line"
-      }],
-    };
+    get arr() {
+      const today = new Date();
+      const x = this.recordList.map(i => ({
+        timeAt: dayjs(i.timeAt).format("YYYY-MM-DD"),
+        amount: i.amount,
+        type: i.type
+      }));
+      const array = [];
+      for (let i = 0; i < 29; i++) {
+        const date = dayjs(today).subtract(i, "day").format("YYYY-MM-DD");
+        const amount = x.filter(t => t.timeAt === date).filter(i => i.type === this.choose).reduce((sum, item) => {return sum + item.amount;}, 0);
+        array.push({date: date, amount: amount});
+      }
+      console.log(array);
+      console.log(x);
+      const z = array.sort((a, b) => dayjs(a.date).valueOf() - dayjs(b.date).valueOf());
+      const keys = z.map(t => t.date);
+      const values = z.map(t => t.amount);
+      return {keys, values};
+    }
+
+    get option() {
+      const {keys, values} = this.arr;
+      return {
+        grid: {
+          left: 0,
+          right: 0
+        },
+        xAxis: {
+          type: "category",
+          data: keys,
+          axisTick: {
+            alignWithLabel: true,
+          }
+        },
+        yAxis: {
+          type: "value",
+          show: false
+        },
+        tooltip: {
+          show: true,
+          triggerOn: "click",
+          position: "top",
+          formatter: "{c}",
+          backgroundColor:'#ffcd00'
+        },
+        series: [{
+          symbol: "circle",
+          symbolSize: 12,
+          itemStyle: {color: "#ffcd00"},
+          data: values,
+          type: "line"
+        }],
+      };
+
+    }
 
 
     onChange(value: string) {
@@ -78,6 +94,9 @@
 
     created() {
       this.$store.commit("fetchRecords");
+      console.log(this.arr.keys);
+      console.log(this.arr.values);
+      console.log("刷新了");
     }
 
     mounted() {
