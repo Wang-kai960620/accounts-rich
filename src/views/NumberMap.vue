@@ -25,8 +25,6 @@
     get recordList() {
       return this.$store.state.recordList;
     }
-
-
     created() {
       this.$store.commit("fetchRecords");
     }

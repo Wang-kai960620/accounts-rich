@@ -41,11 +41,13 @@
             margin: -5px 20px 20px;
             width: 40%;
             border-radius: 0 0 30px 30px;
-            background: #c4c4c4;
+            background: #4db2e4;
             box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 
             &.input {
-                background: #838383;
+                background: #4DB292;
+                color: white;
+                box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.1);
                 z-index: 2;
 
             }

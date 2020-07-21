@@ -1,8 +1,8 @@
 <template>
     <Layout>
         <statisticsTitle/>
-        <div class="text">详情</div>
-        <div class="pack">
+        <DetailButton :value="choose" @update:value="onChange"/>
+        <div class="pack" ref="wrapper">
             <Echarts :option="option" class="sketch"></Echarts>
         </div>
     </Layout>
@@ -16,6 +16,7 @@
   import Echarts from "@/components/Statistics/Echarts.vue";
   import clone from "@/lib/clone";
   import dayjs from "dayjs";
+  import DetailButton from "@/components/Detail/DetailButton.vue";
 
   type RootItem = {
     recordList: RecordItem[];
@@ -23,51 +24,67 @@
 
 
   @Component({
-    components: {Echarts, statisticsTitle}
+    components: {DetailButton, Echarts, statisticsTitle}
   })
   export default class Statistics extends Vue {
+    choose = "-";
 
     option = {
-      tooltip: {
-        trigger: 'item',
-        formatter: '{a} <br/>{b}: {c} ({d}%)'
+      grid: {
+        left: 0,
+        right: 0
       },
-      legend: {
-        orient: 'vertical',
-        left: 10,
-        data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
-      },
-      series: [
-        {
-          name: '访问来源',
-          type: 'pie',
-          radius: ['50%', '70%'],
-          avoidLabelOverlap: false,
-          label: {
-            show: false,
-            position: 'center'
-          },
-          emphasis: {
-            label: {
-              show: true,
-              fontSize: '30',
-              fontWeight: 'bold'
-            }
-          },
-          labelLine: {
-            show: false
-          },
-          data: [
-            ...this.renderSource
-          ]
+      xAxis: {
+        type: "category",
+        data: [
+          "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun",
+          "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun",
+          "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun",
+          "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"
+        ],
+        axisTick: {
+          alignWithLabel: true,
         }
-      ]
+      },
+      yAxis: {
+        type: "value",
+        show: false
+      },
+      tooltip: {
+        show: true,
+        triggerOn: "click",
+        position: "top",
+        formatter: "{c}"
+      },
+      series: [{
+        symbol: "circle",
+        symbolSize: 12,
+        itemStyle: {color: "#ffcd00"},
+        data: [
+          820, 932, 901, 934, 1290, 1330, 1320,
+          820, 932, 901, 934, 1290, 1330, 1320,
+          820, 932, 901, 934, 1290, 1330, 1320,
+          820, 932, 901, 934, 1290, 1330, 1320
+        ],
+        type: "line"
+      }],
     };
+
+
+    onChange(value: string) {
+      this.choose = value;
+    }
 
 
     created() {
       this.$store.commit("fetchRecords");
     }
+
+    mounted() {
+      const div = (this.$refs.wrapper as HTMLDivElement);
+      div.scrollLeft = div.scrollWidth;
+    }
+
 
     get recordList() {
       return (this.$store.state as RootItem).recordList;
@@ -105,11 +122,15 @@
     }
 
     .pack {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        overflow: auto;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
 
         > .sketch {
+            width: 410%;
+
         }
     }
 
