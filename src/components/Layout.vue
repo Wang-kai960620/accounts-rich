@@ -15,9 +15,11 @@
 
 <style lang="scss" scoped>
     .nav {
+        max-width: 400px;
         display: flex;
         flex-direction: column;
         height: 100vh;
+        margin: 0 auto;
     }
 
     .content {

@@ -104,7 +104,12 @@
         justify-content: center;
         width: 300px;
         text-align: center;
-        overflow: scroll;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        &::-webkit-scrollbar{
+            display: none;
+        }
+
 
 
         > div {

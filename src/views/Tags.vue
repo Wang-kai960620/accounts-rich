@@ -121,7 +121,11 @@
             height: 60%;
             display: flex;
             flex-wrap: wrap;
-            overflow: scroll;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            &::-webkit-scrollbar{
+                display: none;
+            }
             box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, 0.25);
             border-radius: 10px 10px 10px 10px;
 

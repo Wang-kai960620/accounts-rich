@@ -131,7 +131,11 @@ export default class Bill extends Vue {
   font-size: 26px;
   height: 60vh;
   flex-wrap: wrap;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  &::-webkit-scrollbar{
+    display: none;
+  }
 
   > .outList {
     display: flex;

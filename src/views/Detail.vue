@@ -86,7 +86,11 @@ export default class Detail extends Vue {
 <style lang="scss" scoped>
 .list {
   max-height: 60vh;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  &::-webkit-scrollbar{
+    display: none;
+  }
   font-size: 25px;
   display: flex;
   flex-wrap: wrap;
