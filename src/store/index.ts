@@ -12,10 +12,13 @@ const store = new Vuex.Store({
     fetchRecords(state) {
       state.recordList = JSON.parse(window.localStorage.getItem("recordList") || "[]") as RecordItem[];
     },
-    createRecords(state,record){
-      const record2: RecordItem =record
-      state.recordList.push(record2)
-      store.commit('saveRecords')
+    createRecords(state, record) {
+      const record2: RecordItem = record;
+      state.recordList.push(record2);
+      store.commit("saveRecords");
+    },
+    reset(state) {
+      state.editingItem.notes = "";
     },
 
     saveRecords(state) {
@@ -31,6 +34,7 @@ const store = new Vuex.Store({
     //   store.commit('saveTags');
     //   window.alert('添加成功');
     // },
+
 
   }
 });

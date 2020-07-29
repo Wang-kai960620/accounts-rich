@@ -20,13 +20,15 @@
     components: {numberType, numberTitle, NumberButton},
   })
 
-
   export default class NumberMap extends Vue {
     get recordList() {
       return this.$store.state.recordList;
     }
+
     created() {
       this.$store.commit("fetchRecords");
+      this.$store.commit("reset");
+
     }
 
     onUpdateAmount(value: string) {
@@ -38,9 +40,13 @@
     }
 
     saveAmount() {
-      this.$store.state.editingItem.timeAt = new Date().toISOString();
-      this.$store.commit("createRecords", this.$store.state.editingItem);
-      router.push("/");
+      if (this.$store.state.editingItem.notes === "") {
+        alert("请输入备注");
+      } else {
+        this.$store.state.editingItem.timeAt = new Date().toISOString();
+        this.$store.commit("createRecords", this.$store.state.editingItem);
+        router.push("/");
+      }
     }
 
   }

@@ -15,6 +15,7 @@
     <div class="outTag">
       <div class="outList" @click="toDetail" v-for="(name,index) in moneyList" :key="index">
         <Icon :name="name.tags" class="icon" />
+        <span class="text">{{name.notes}}</span>
         {{name.type}}￥{{name.amount}}
       </div>
     </div>
@@ -150,6 +151,9 @@ export default class Bill extends Vue {
     color: black;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
     font-size: 26px;
+    >.text{
+      color: #c4c4c4;
+    }
   }
 }
 </style>
